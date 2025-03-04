@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../models/job_model.dart';
-import '../widgets/job_card.dart';
-import '../widgets/filter_tabs.dart';
-import '../widgets/job_count.dart';
+import '../../models/job_model.dart';
+import './widgets/job_card.dart';
+import './widgets/filter_tabs.dart';
+import './widgets/job_count.dart';
 
 class JobsScreen extends StatefulWidget {
   const JobsScreen({Key? key}) : super(key: key);
