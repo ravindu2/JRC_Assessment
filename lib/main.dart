@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jrc_assement/views/login_feature/view.dart';
-
+import 'package:jrc_assement/views/login_feature/login_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,5 +16,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

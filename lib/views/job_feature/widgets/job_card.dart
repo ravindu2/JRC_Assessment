@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../../models/job_model.dart';
+import '../../../themes/themes.dart';
 
 class JobCard extends StatelessWidget {
   final JobModel job;
 
-  const JobCard({Key? key, required this.job}) : super(key: key);
+  const JobCard({super.key, required this.job});
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +25,24 @@ class JobCard extends StatelessWidget {
                 Text(
                   job.id,
                   style: TextStyle(
-                    color: Colors.green[700],
+                    color: AppColors.jobIdColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(width: 8),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: Colors.grey[200],
+                    color: AppColors.statusBackgroundColor,
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
                     job.status,
-                    style: const TextStyle(fontSize: 12),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: AppColors.statusTextColor,
+                    ),
                   ),
                 ),
                 const Spacer(),
@@ -45,22 +50,23 @@ class JobCard extends StatelessWidget {
                   job.category,
                   style: const TextStyle(
                     fontSize: 12,
-                    color: Colors.black87,
+                    color: AppColors.categoryTextColor,
                   ),
                 ),
                 if (job.isUrgent) ...[
                   const SizedBox(width: 8),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.pink[100],
+                      color: AppColors.urgentBackgroundColor,
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Urgently',
                       style: TextStyle(
                         fontSize: 12,
-                        color: Colors.pink,
+                        color: AppColors.urgentTextColor,
                       ),
                     ),
                   ),
@@ -73,13 +79,14 @@ class JobCard extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
+                color: AppColors.titleTextColor,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               job.location,
               style: TextStyle(
-                color: Colors.grey[600],
+                color: AppColors.locationTextColor,
                 fontSize: 14,
               ),
             ),
@@ -87,7 +94,7 @@ class JobCard extends StatelessWidget {
             Text(
               'Posted on ${job.postDate}',
               style: TextStyle(
-                color: Colors.grey[500],
+                color: AppColors.postDateTextColor,
                 fontSize: 12,
               ),
             ),
