@@ -11,7 +11,7 @@ class JobsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final JobsController controller = Get.put(JobsController());
+    final JobsController controller = Get.find();
 
     return Scaffold(
       appBar: _buildAppBar(),
