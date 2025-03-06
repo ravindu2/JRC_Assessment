@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
 import '../../data/models/job_model.dart';
+import '../../data/remote_data_source/job_remote_data_source.dart';
+import '../../data/services/api_service.dart';
 
 class JobsController extends GetxController {
+  final JobRemoteDataSource _jobRemoteDataSource =
+      JobRemoteDataSource(ApiService());
   var selectedFilter = "ACTION".obs;
   final List<String> filters = ["ACTION", "FOLLOW UP", "REVIEW"];
   var jobs = <JobModel>[].obs;
@@ -9,32 +13,17 @@ class JobsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    loadJobs();
+    fetchJobs();
   }
 
-  void loadJobs() {
-    jobs.value = [
-      JobModel(
-        id: "20513917758",
-        title: "Need to fix damaged powerpoint",
-        location: "NSW Coastline Cycleway, Bulli NSW, Australia",
-        category: "Electrician / Powerpoint",
-        status: "Recently posted",
-        isUrgent: false,
-        postDate: "26 Nov 2020",
-        quoteAvailable: false,
-      ),
-      JobModel(
-        id: "20513917758",
-        title: "Need to fix damaged powerpoint",
-        location: "NSW Coastline Cycleway, Bulli NSW, Australia",
-        category: "Electrician / Powerpoint",
-        status: "Quote available",
-        isUrgent: true,
-        postDate: "26 Nov 2020",
-        quoteAvailable: true,
-      ),
-    ];
+  void fetchJobs() async {
+    try {
+      final String userId = Get.arguments['userId'];
+      final jobList = await _jobRemoteDataSource.getJobList(userId);
+      jobs.assignAll(jobList);
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to load jobs: $e');
+    }
   }
 
   void changeFilter(String filter) {

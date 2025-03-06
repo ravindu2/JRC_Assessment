@@ -31,15 +31,34 @@ class ApiService {
     int headerPm = 102,
   }) async {
     try {
+      final url = 'smartView/pm/jobList';
+      final queryParams = {
+        'userId': userId,
+        'pageNumber': pageNumber.toString(),
+        'pageSize': pageSize.toString(),
+        'headerPm': headerPm.toString(),
+      };
+      final fullUrl = '${_dio.options.baseUrl}$url';
+      final headers = {
+        'User-Agent': 'PostmanRuntime/7.43.0',
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+        'Content-Type': 'application/json',
+        'ChannelId': 'T4E18DDD47BDE8958C579F1C',
+        'ClientSecret': '134C18DDDE478DDE895BC5769FB1C',
+      };
       final response = await _dio.get(
-        'smartView/pm/jobList',
-        queryParameters: {
-          'userId': userId,
-          'pageNumber': pageNumber,
-          'pageSize': pageSize,
-          'headerPm': headerPm,
-        },
+        fullUrl,
+        queryParameters: queryParams,
+        options: Options(
+          validateStatus: (status) {
+            return status! < 500;
+          },
+          headers: headers,
+        ),
       );
+
       return response;
     } catch (e) {
       rethrow;
