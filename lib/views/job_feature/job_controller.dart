@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../../models/job_model.dart';
+import '../../data/models/job_model.dart';
 
 class JobsController extends GetxController {
   var selectedFilter = "ACTION".obs;
