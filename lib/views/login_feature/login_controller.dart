@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,6 +23,7 @@ class LoginController extends GetxController {
     isLoading.value = false;
 
     Get.snackbar('Success', 'Logged in successfully');
+    Get.toNamed('/jobs');
   }
 
   @override

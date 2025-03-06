@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jrc_assement/views/login_feature/login_view.dart';
+import 'package:get/get.dart';
+import 'package:jrc_assement/routes/app_pages.dart';
+import 'package:jrc_assement/routes/app_routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,9 +12,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      title: 'jrc assemenet',
+      initialRoute: AppRoutes.login,
+      getPages: AppPages.pages,
     );
   }
 }
