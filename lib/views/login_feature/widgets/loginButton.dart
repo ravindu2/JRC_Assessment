@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../themes/themes.dart';
 import '../login_controller.dart';
 import 'package:get/get.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginButton extends StatelessWidget {
   final LoginController controller;
@@ -19,8 +20,8 @@ class LoginButton extends StatelessWidget {
                 ? const CircularProgressIndicator(
                     color: AppColors.buttonTextColor,
                   )
-                : const Text(
-                    'LOGIN',
+                : Text(
+                    AppLocalizations.of(context)!.login,
                     style: AppThemes.buttonTextStyle,
                   ),
           ),
