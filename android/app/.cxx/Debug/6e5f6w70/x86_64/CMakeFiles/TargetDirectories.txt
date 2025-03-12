@@ -1,0 +1,2 @@
+C:/Project/New folder/JRC_Assessment/android/app/.cxx/Debug/6e5f6w70/x86_64/CMakeFiles/edit_cache.dir
+C:/Project/New folder/JRC_Assessment/android/app/.cxx/Debug/6e5f6w70/x86_64/CMakeFiles/rebuild_cache.dir

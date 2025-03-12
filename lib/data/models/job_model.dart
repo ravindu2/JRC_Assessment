@@ -1,4 +1,9 @@
+import 'package:isar/isar.dart';
+part 'job_model.g.dart';
+
+@collection
 class JobModel {
+  Id isarId = Isar.autoIncrement;
   final String id;
   final String title;
   final String location;
