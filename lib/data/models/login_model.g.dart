@@ -22,9 +22,9 @@ const UserModelSchema = CollectionSchema(
       name: r'isEmailConfirmed',
       type: IsarType.bool,
     ),
-    r'token': PropertySchema(
+    r'ssoToken': PropertySchema(
       id: 1,
-      name: r'token',
+      name: r'ssoToken',
       type: IsarType.string,
     ),
     r'userId': PropertySchema(
@@ -53,7 +53,7 @@ int _userModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.token.length * 3;
+  bytesCount += 3 + object.ssoToken.length * 3;
   bytesCount += 3 + object.userId.length * 3;
   return bytesCount;
 }
@@ -65,7 +65,7 @@ void _userModelSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeBool(offsets[0], object.isEmailConfirmed);
-  writer.writeString(offsets[1], object.token);
+  writer.writeString(offsets[1], object.ssoToken);
   writer.writeString(offsets[2], object.userId);
 }
 
@@ -77,7 +77,7 @@ UserModel _userModelDeserialize(
 ) {
   final object = UserModel(
     isEmailConfirmed: reader.readBool(offsets[0]),
-    token: reader.readString(offsets[1]),
+    ssoToken: reader.readString(offsets[1]),
     userId: reader.readString(offsets[2]),
   );
   object.id = id;
@@ -256,20 +256,20 @@ extension UserModelQueryFilter
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> tokenEqualTo(
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> ssoTokenEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'token',
+        property: r'ssoToken',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> tokenGreaterThan(
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> ssoTokenGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -277,14 +277,14 @@ extension UserModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'token',
+        property: r'ssoToken',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> tokenLessThan(
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> ssoTokenLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -292,14 +292,14 @@ extension UserModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'token',
+        property: r'ssoToken',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> tokenBetween(
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> ssoTokenBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -308,7 +308,7 @@ extension UserModelQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'token',
+        property: r'ssoToken',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -318,69 +318,70 @@ extension UserModelQueryFilter
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> tokenStartsWith(
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> ssoTokenStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'token',
+        property: r'ssoToken',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> tokenEndsWith(
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> ssoTokenEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'token',
+        property: r'ssoToken',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> tokenContains(
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> ssoTokenContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'token',
+        property: r'ssoToken',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> tokenMatches(
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> ssoTokenMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
-        property: r'token',
+        property: r'ssoToken',
         wildcard: pattern,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> tokenIsEmpty() {
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> ssoTokenIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'token',
+        property: r'ssoToken',
         value: '',
       ));
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> tokenIsNotEmpty() {
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition>
+      ssoTokenIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'token',
+        property: r'ssoToken',
         value: '',
       ));
     });
@@ -537,15 +538,15 @@ extension UserModelQuerySortBy on QueryBuilder<UserModel, UserModel, QSortBy> {
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterSortBy> sortByToken() {
+  QueryBuilder<UserModel, UserModel, QAfterSortBy> sortBySsoToken() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'token', Sort.asc);
+      return query.addSortBy(r'ssoToken', Sort.asc);
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterSortBy> sortByTokenDesc() {
+  QueryBuilder<UserModel, UserModel, QAfterSortBy> sortBySsoTokenDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'token', Sort.desc);
+      return query.addSortBy(r'ssoToken', Sort.desc);
     });
   }
 
@@ -589,15 +590,15 @@ extension UserModelQuerySortThenBy
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterSortBy> thenByToken() {
+  QueryBuilder<UserModel, UserModel, QAfterSortBy> thenBySsoToken() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'token', Sort.asc);
+      return query.addSortBy(r'ssoToken', Sort.asc);
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QAfterSortBy> thenByTokenDesc() {
+  QueryBuilder<UserModel, UserModel, QAfterSortBy> thenBySsoTokenDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'token', Sort.desc);
+      return query.addSortBy(r'ssoToken', Sort.desc);
     });
   }
 
@@ -622,10 +623,10 @@ extension UserModelQueryWhereDistinct
     });
   }
 
-  QueryBuilder<UserModel, UserModel, QDistinct> distinctByToken(
+  QueryBuilder<UserModel, UserModel, QDistinct> distinctBySsoToken(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'token', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'ssoToken', caseSensitive: caseSensitive);
     });
   }
 
@@ -651,9 +652,9 @@ extension UserModelQueryProperty
     });
   }
 
-  QueryBuilder<UserModel, String, QQueryOperations> tokenProperty() {
+  QueryBuilder<UserModel, String, QQueryOperations> ssoTokenProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'token');
+      return query.addPropertyName(r'ssoToken');
     });
   }
 

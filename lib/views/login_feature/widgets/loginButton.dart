@@ -15,7 +15,12 @@ class LoginButton extends StatelessWidget {
           width: double.infinity,
           child: ElevatedButton(
             style: AppThemes.elevatedButtonStyle,
-            onPressed: controller.isLoading.value ? null : controller.login,
+            onPressed: controller.isLoading.value
+                ? null
+                : () => controller.login(
+                      controller.emailController.text.trim(),
+                      controller.passwordController.text.trim(),
+                    ),
             child: controller.isLoading.value
                 ? const CircularProgressIndicator(
                     color: AppColors.buttonTextColor,

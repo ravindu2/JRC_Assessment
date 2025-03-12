@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:jrc_assement/data/models/login_model.dart';
 import '../local_data_source/job_localdata_source.dart';
 import '../remote_data_source/job_remote_data_source.dart';
 import '../models/job_model.dart';
@@ -27,5 +28,16 @@ class JobRepository {
       return await localDataSource.getJobs();
       print(e);
     }
+  }
+
+  Future<UserModel> login(String email, String password) async {
+    final user = await remoteDataSource.login(email, password);
+    await localDataSource.saveUser(user);
+    return user;
+  }
+
+  Future<bool> isLoggedIn() async {
+    final user = await localDataSource.getUser();
+    return user != null;
   }
 }
