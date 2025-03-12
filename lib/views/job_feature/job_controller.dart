@@ -20,14 +20,17 @@ class JobsController extends GetxController {
   }
 
   void fetchJobs() async {
-    try {
-      final String userId = Get.arguments['userId'];
-      final jobList = await repository.getJobs(userId);
-      print(Get.arguments['userId']);
+    final String userId = Get.arguments['userId'];
+    if (userId.isNotEmpty) {
+      try {
+        final jobList = await repository.getJobs(userId);
+        jobs.assignAll(jobList);
+      } catch (e) {
+        Get.snackbar('Error', 'Failed to load jobs: $e');
+      }
+    } else {
+      final jobList = await repository.getJobsLocal();
       jobs.assignAll(jobList);
-    } catch (e) {
-      Get.snackbar('Error', 'Failed to load jobs: $e');
-      print(e);
     }
   }
 

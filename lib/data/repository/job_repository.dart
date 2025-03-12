@@ -16,18 +16,11 @@ class JobRepository {
   Future<List<JobModel>> getJobs(String userId) async {
     final jobs = await remoteDataSource.getJobList(userId);
     await localDataSource.saveJobs(jobs.take(6).toList());
+    return await localDataSource.getJobs();
+  }
 
-    try {
-      if (jobs.isNotEmpty) {
-        await localDataSource.saveJobs(jobs.take(6).toList());
-        return jobs;
-      } else {
-        return await localDataSource.getJobs();
-      }
-    } catch (e) {
-      return await localDataSource.getJobs();
-      print(e);
-    }
+  Future<List<JobModel>> getJobsLocal() async {
+    return await localDataSource.getJobs();
   }
 
   Future<UserModel> login(String email, String password) async {
