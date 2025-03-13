@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jrc_assement/data/remote_data_source/job_remote_data_source.dart';
+import 'package:jrc_assement/data/remote_data_source/remote_data_source.dart';
 import '../../../data/services/api_service.dart';
-import '../../data/local_data_source/job_localdata_source.dart';
+import '../../data/local_data_source/localdata_source.dart';
 import '../../data/repository/job_repository.dart';
 
 class LoginController extends GetxController {
@@ -13,8 +13,8 @@ class LoginController extends GetxController {
   RxString userId = ''.obs;
 
   final JobRepository repository = JobRepository(
-    localDataSource: JobLocalDataSource(),
-    remoteDataSource: JobRemoteDataSource(ApiService()),
+    localDataSource: LocalDataSource(),
+    remoteDataSource: RemoteDataSource(ApiService()),
   );
 
   @override
@@ -50,14 +50,9 @@ class LoginController extends GetxController {
 
   Future<void> checkLoginStatus() async {
     if (await repository.isLoggedIn()) {
-      Get.offAllNamed('/jobs');
-    }
-
-    @override
-    void onClose() {
-      emailController.dispose();
-      passwordController.dispose();
-      super.onClose();
+      Get.offAllNamed(
+        '/jobs',
+      );
     }
   }
 }

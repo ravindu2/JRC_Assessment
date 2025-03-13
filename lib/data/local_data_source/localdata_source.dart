@@ -3,11 +3,11 @@ import 'package:path_provider/path_provider.dart';
 import '../models/job_model.dart';
 import '../models/login_model.dart';
 
-class JobLocalDataSource {
+class LocalDataSource {
   static Isar? _isar;
   static bool _isInitializing = false;
 
-  JobLocalDataSource() {
+  LocalDataSource() {
     if (_isar == null && !_isInitializing) {
       _initIsar();
     }

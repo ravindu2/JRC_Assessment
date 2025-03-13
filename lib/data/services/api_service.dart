@@ -40,9 +40,6 @@ class ApiService {
       };
       final fullUrl = '${_dio.options.baseUrl}$url';
       final headers = {
-        'User-Agent': 'PostmanRuntime/7.43.0',
-        'Accept': '*/*',
-        'Accept-Encoding': 'gzip, deflate, br',
         'Connection': 'keep-alive',
         'Content-Type': 'application/json',
         'ChannelId': 'T4E18DDD47BDE8958C579F1C',

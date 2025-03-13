@@ -1,5 +1,10 @@
 {
   "loginText": "Login to your account",
   "login": "LOGIN",
-  "forgotPassword":"Forgot password?"
+  "forgotPassword":"Forgot password?",
+  "jobs":"Jobs",
+  "inspections":"Inspections",
+  "chat":"Chat",
+  "notifications":"Notifications",
+  "more":"More"
 }

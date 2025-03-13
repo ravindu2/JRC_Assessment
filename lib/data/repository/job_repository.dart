@@ -1,12 +1,11 @@
-import 'package:get/get.dart';
 import 'package:jrc_assement/data/models/login_model.dart';
-import '../local_data_source/job_localdata_source.dart';
-import '../remote_data_source/job_remote_data_source.dart';
+import '../local_data_source/localdata_source.dart';
+import '../remote_data_source/remote_data_source.dart';
 import '../models/job_model.dart';
 
 class JobRepository {
-  final JobRemoteDataSource remoteDataSource;
-  final JobLocalDataSource localDataSource;
+  final RemoteDataSource remoteDataSource;
+  final LocalDataSource localDataSource;
 
   JobRepository({
     required this.localDataSource,
@@ -32,5 +31,10 @@ class JobRepository {
   Future<bool> isLoggedIn() async {
     final user = await localDataSource.getUser();
     return user != null;
+  }
+
+  Future<UserModel?> localusers() async {
+    final user = await localDataSource.getUser();
+    return user;
   }
 }

@@ -5,6 +5,7 @@ import './widgets/job_card.dart';
 import './widgets/filter_tabs.dart';
 import './widgets/job_count.dart';
 import './widgets/bottom_nav_bar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class JobsScreen extends StatelessWidget {
   const JobsScreen({super.key});

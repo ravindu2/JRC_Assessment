@@ -2,10 +2,10 @@ import '../models/job_model.dart';
 import '../models/login_model.dart';
 import '../services/api_service.dart';
 
-class JobRemoteDataSource {
+class RemoteDataSource {
   final ApiService _apiService;
 
-  JobRemoteDataSource(this._apiService);
+  RemoteDataSource(this._apiService);
 
   Future<List<JobModel>> getJobList(String userId) async {
     final response = await _apiService.getJobList(userId: userId);
