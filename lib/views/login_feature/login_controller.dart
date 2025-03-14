@@ -50,9 +50,8 @@ class LoginController extends GetxController {
 
   Future<void> checkLoginStatus() async {
     if (await repository.isLoggedIn()) {
-      Get.offAllNamed(
-        '/jobs',
-      );
+      final user = await repository.localusers();
+      Get.offAllNamed('/jobs', arguments: {'userId': user?.userId});
     }
   }
 }

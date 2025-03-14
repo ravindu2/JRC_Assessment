@@ -6,6 +6,17 @@ class Dimens {
   static const double spaceLarge = 32.0;
   static const double spaceMedium = 24.0;
   static const double spaceSmall = 16.0;
+
+  static const double paddingSmall = 8.0;
+  static const double paddingMedium = 16.0;
+  static const double paddingLarge = 24.0;
+  static const double marginSmall = 8.0;
+  static const double marginMedium = 16.0;
+  static const double fontSmall = 12.0;
+  static const double fontMedium = 14.0;
+  static const double fontLarge = 16.0;
+  static const double borderRadiusSmall = 4.0;
+  static const double borderRadiusMedium = 8.0;
 }
 
 class AppColors {
