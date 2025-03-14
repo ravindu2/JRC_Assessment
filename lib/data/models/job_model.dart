@@ -8,7 +8,7 @@ class JobModel {
   final String title;
   final String location;
   final String category;
-  final String status;
+  final String jobNumber;
   final bool isUrgent;
   final String postDate;
   final bool quoteAvailable;
@@ -18,7 +18,7 @@ class JobModel {
     required this.title,
     required this.location,
     required this.category,
-    required this.status,
+    required this.jobNumber,
     required this.isUrgent,
     required this.postDate,
     required this.quoteAvailable,
@@ -30,7 +30,7 @@ class JobModel {
       title: json['title'] ?? '',
       location: json['address'] ?? '',
       category: json['primaryJobType'] ?? '',
-      status: json['statusId'].toString(),
+      jobNumber: json['jobNumber'] ?? '',
       isUrgent: (json['urgencyTypeId'] == 1),
       postDate: json['postedDateTime'] ?? '',
       quoteAvailable: json['price'] != null && json['price'] != '0.000000',

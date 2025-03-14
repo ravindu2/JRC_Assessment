@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:jrc_assement/data/remote_data_source/remote_data_source.dart';
 import '../../../data/services/api_service.dart';
 import '../../data/local_data_source/localdata_source.dart';
-import '../../data/repository/job_repository.dart';
+import '../../data/repository/repository.dart';
 
 class LoginController extends GetxController {
   final emailController = TextEditingController();
@@ -12,7 +12,7 @@ class LoginController extends GetxController {
   var isLoading = false.obs;
   RxString userId = ''.obs;
 
-  final JobRepository repository = JobRepository(
+  final Repository repository = Repository(
     localDataSource: LocalDataSource(),
     remoteDataSource: RemoteDataSource(ApiService()),
   );

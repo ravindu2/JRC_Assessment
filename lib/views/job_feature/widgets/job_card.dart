@@ -11,7 +11,7 @@ class JobCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      elevation: 0,
+      elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
@@ -20,60 +20,7 @@ class JobCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Text(
-                  job.id,
-                  style: TextStyle(
-                    color: AppColors.jobIdColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: AppColors.statusBackgroundColor,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Text(
-                    job.status,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: AppColors.statusTextColor,
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                Text(
-                  job.category,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: AppColors.categoryTextColor,
-                  ),
-                ),
-                if (job.isUrgent) ...[
-                  const SizedBox(width: 8),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: AppColors.urgentBackgroundColor,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Text(
-                      'Urgently',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: AppColors.urgentTextColor,
-                      ),
-                    ),
-                  ),
-                ],
-              ],
-            ),
-            const SizedBox(height: 12),
+            // Title
             Text(
               job.title,
               style: const TextStyle(
@@ -83,6 +30,7 @@ class JobCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
+            // Location
             Text(
               job.location,
               style: TextStyle(
@@ -90,7 +38,66 @@ class JobCard extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: AppColors.jobIdColor.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Text(
+                    '#${job.jobNumber}',
+                    style: TextStyle(
+                      color: AppColors.jobIdColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                // Status (Tenant posted)
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: const Text(
+                    'Tenant posted',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                // Category (Electrician: Powerpoint)
+                Flexible(
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      job.category,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.black54,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 8),
+            // Posted Date
             Text(
               'Posted on ${job.postDate}',
               style: TextStyle(

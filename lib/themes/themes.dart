@@ -1,6 +1,13 @@
 // themes.dart
 import 'package:flutter/material.dart';
 
+class Dimens {
+  static const double paddingHorizontal = 24.0;
+  static const double spaceLarge = 32.0;
+  static const double spaceMedium = 24.0;
+  static const double spaceSmall = 16.0;
+}
+
 class AppColors {
   // General Colors
   static const Color primaryColor = Colors.blueAccent;

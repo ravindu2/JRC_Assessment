@@ -32,25 +32,25 @@ const JobModelSchema = CollectionSchema(
       name: r'isUrgent',
       type: IsarType.bool,
     ),
-    r'location': PropertySchema(
+    r'jobNumber': PropertySchema(
       id: 3,
+      name: r'jobNumber',
+      type: IsarType.string,
+    ),
+    r'location': PropertySchema(
+      id: 4,
       name: r'location',
       type: IsarType.string,
     ),
     r'postDate': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'postDate',
       type: IsarType.string,
     ),
     r'quoteAvailable': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'quoteAvailable',
       type: IsarType.bool,
-    ),
-    r'status': PropertySchema(
-      id: 6,
-      name: r'status',
-      type: IsarType.string,
     ),
     r'title': PropertySchema(
       id: 7,
@@ -80,9 +80,9 @@ int _jobModelEstimateSize(
   var bytesCount = offsets.last;
   bytesCount += 3 + object.category.length * 3;
   bytesCount += 3 + object.id.length * 3;
+  bytesCount += 3 + object.jobNumber.length * 3;
   bytesCount += 3 + object.location.length * 3;
   bytesCount += 3 + object.postDate.length * 3;
-  bytesCount += 3 + object.status.length * 3;
   bytesCount += 3 + object.title.length * 3;
   return bytesCount;
 }
@@ -96,10 +96,10 @@ void _jobModelSerialize(
   writer.writeString(offsets[0], object.category);
   writer.writeString(offsets[1], object.id);
   writer.writeBool(offsets[2], object.isUrgent);
-  writer.writeString(offsets[3], object.location);
-  writer.writeString(offsets[4], object.postDate);
-  writer.writeBool(offsets[5], object.quoteAvailable);
-  writer.writeString(offsets[6], object.status);
+  writer.writeString(offsets[3], object.jobNumber);
+  writer.writeString(offsets[4], object.location);
+  writer.writeString(offsets[5], object.postDate);
+  writer.writeBool(offsets[6], object.quoteAvailable);
   writer.writeString(offsets[7], object.title);
 }
 
@@ -113,10 +113,10 @@ JobModel _jobModelDeserialize(
     category: reader.readString(offsets[0]),
     id: reader.readString(offsets[1]),
     isUrgent: reader.readBool(offsets[2]),
-    location: reader.readString(offsets[3]),
-    postDate: reader.readString(offsets[4]),
-    quoteAvailable: reader.readBool(offsets[5]),
-    status: reader.readString(offsets[6]),
+    jobNumber: reader.readString(offsets[3]),
+    location: reader.readString(offsets[4]),
+    postDate: reader.readString(offsets[5]),
+    quoteAvailable: reader.readBool(offsets[6]),
     title: reader.readString(offsets[7]),
   );
   object.isarId = id;
@@ -141,9 +141,9 @@ P _jobModelDeserializeProp<P>(
     case 4:
       return (reader.readString(offset)) as P;
     case 5:
-      return (reader.readBool(offset)) as P;
-    case 6:
       return (reader.readString(offset)) as P;
+    case 6:
+      return (reader.readBool(offset)) as P;
     case 7:
       return (reader.readString(offset)) as P;
     default:
@@ -565,6 +565,137 @@ extension JobModelQueryFilter
     });
   }
 
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> jobNumberEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'jobNumber',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> jobNumberGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'jobNumber',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> jobNumberLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'jobNumber',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> jobNumberBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'jobNumber',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> jobNumberStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'jobNumber',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> jobNumberEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'jobNumber',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> jobNumberContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'jobNumber',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> jobNumberMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'jobNumber',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> jobNumberIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'jobNumber',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition>
+      jobNumberIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'jobNumber',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<JobModel, JobModel, QAfterFilterCondition> locationEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -835,136 +966,6 @@ extension JobModelQueryFilter
     });
   }
 
-  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> statusEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'status',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> statusGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'status',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> statusLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'status',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> statusBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'status',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> statusStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'status',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> statusEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'status',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> statusContains(
-      String value,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'status',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> statusMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'status',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> statusIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'status',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> statusIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'status',
-        value: '',
-      ));
-    });
-  }
-
   QueryBuilder<JobModel, JobModel, QAfterFilterCondition> titleEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1139,6 +1140,18 @@ extension JobModelQuerySortBy on QueryBuilder<JobModel, JobModel, QSortBy> {
     });
   }
 
+  QueryBuilder<JobModel, JobModel, QAfterSortBy> sortByJobNumber() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'jobNumber', Sort.asc);
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterSortBy> sortByJobNumberDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'jobNumber', Sort.desc);
+    });
+  }
+
   QueryBuilder<JobModel, JobModel, QAfterSortBy> sortByLocation() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'location', Sort.asc);
@@ -1172,18 +1185,6 @@ extension JobModelQuerySortBy on QueryBuilder<JobModel, JobModel, QSortBy> {
   QueryBuilder<JobModel, JobModel, QAfterSortBy> sortByQuoteAvailableDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'quoteAvailable', Sort.desc);
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterSortBy> sortByStatus() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'status', Sort.asc);
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterSortBy> sortByStatusDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'status', Sort.desc);
     });
   }
 
@@ -1250,6 +1251,18 @@ extension JobModelQuerySortThenBy
     });
   }
 
+  QueryBuilder<JobModel, JobModel, QAfterSortBy> thenByJobNumber() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'jobNumber', Sort.asc);
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterSortBy> thenByJobNumberDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'jobNumber', Sort.desc);
+    });
+  }
+
   QueryBuilder<JobModel, JobModel, QAfterSortBy> thenByLocation() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'location', Sort.asc);
@@ -1283,18 +1296,6 @@ extension JobModelQuerySortThenBy
   QueryBuilder<JobModel, JobModel, QAfterSortBy> thenByQuoteAvailableDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'quoteAvailable', Sort.desc);
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterSortBy> thenByStatus() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'status', Sort.asc);
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterSortBy> thenByStatusDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'status', Sort.desc);
     });
   }
 
@@ -1333,6 +1334,13 @@ extension JobModelQueryWhereDistinct
     });
   }
 
+  QueryBuilder<JobModel, JobModel, QDistinct> distinctByJobNumber(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'jobNumber', caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<JobModel, JobModel, QDistinct> distinctByLocation(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1350,13 +1358,6 @@ extension JobModelQueryWhereDistinct
   QueryBuilder<JobModel, JobModel, QDistinct> distinctByQuoteAvailable() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'quoteAvailable');
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QDistinct> distinctByStatus(
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'status', caseSensitive: caseSensitive);
     });
   }
 
@@ -1394,6 +1395,12 @@ extension JobModelQueryProperty
     });
   }
 
+  QueryBuilder<JobModel, String, QQueryOperations> jobNumberProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'jobNumber');
+    });
+  }
+
   QueryBuilder<JobModel, String, QQueryOperations> locationProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'location');
@@ -1409,12 +1416,6 @@ extension JobModelQueryProperty
   QueryBuilder<JobModel, bool, QQueryOperations> quoteAvailableProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'quoteAvailable');
-    });
-  }
-
-  QueryBuilder<JobModel, String, QQueryOperations> statusProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'status');
     });
   }
 

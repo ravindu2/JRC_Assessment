@@ -1,18 +1,19 @@
 import 'package:dio/dio.dart';
+import 'api_constants.dart';
 
 class ApiService {
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://staging.bricksandagent.com/',
-      connectTimeout: Duration(seconds: 10),
-      receiveTimeout: Duration(seconds: 10),
+      baseUrl: ApiConstants.baseUrl,
+      connectTimeout: Duration(milliseconds: ApiConstants.connectTimeout),
+      receiveTimeout: Duration(milliseconds: ApiConstants.receiveTimeout),
     ),
   );
 
   Future<Response> login(String email, String password) async {
     try {
       final response = await _dio.post(
-        'auth/login',
+        ApiConstants.loginEndpoint,
         data: {
           'Email': email,
           'Password': password,
@@ -26,25 +27,17 @@ class ApiService {
 
   Future<Response> getJobList({
     required String userId,
-    int pageNumber = 1,
-    int pageSize = 10,
-    int headerPm = 102,
   }) async {
     try {
-      final url = 'smartView/pm/jobList';
+      final url = ApiConstants.jobListEndpoint;
       final queryParams = {
         'userId': userId,
-        'pageNumber': pageNumber.toString(),
-        'pageSize': pageSize.toString(),
-        'headerPm': headerPm.toString(),
+        'pageNumber': ApiConstants.defaultPageNumber.toString(),
+        'pageSize': ApiConstants.defaultPageSize.toString(),
+        'headerPm': ApiConstants.defaultHeaderPm.toString(),
       };
       final fullUrl = '${_dio.options.baseUrl}$url';
-      final headers = {
-        'Connection': 'keep-alive',
-        'Content-Type': 'application/json',
-        'ChannelId': 'T4E18DDD47BDE8958C579F1C',
-        'ClientSecret': '134C18DDDE478DDE895BC5769FB1C',
-      };
+
       final response = await _dio.get(
         fullUrl,
         queryParameters: queryParams,
@@ -52,7 +45,7 @@ class ApiService {
           validateStatus: (status) {
             return status! < 500;
           },
-          headers: headers,
+          headers: ApiConstants.defaultHeaders,
         ),
       );
 

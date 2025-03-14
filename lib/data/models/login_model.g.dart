@@ -664,3 +664,20 @@ extension UserModelQueryProperty
     });
   }
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
+      userId: json['userId'] as String,
+      isEmailConfirmed: json['isEmailConfirmed'] as bool,
+      ssoToken: json['ssoToken'] as String,
+    )..id = (json['id'] as num).toInt();
+
+Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
+      'id': instance.id,
+      'userId': instance.userId,
+      'isEmailConfirmed': instance.isEmailConfirmed,
+      'ssoToken': instance.ssoToken,
+    };

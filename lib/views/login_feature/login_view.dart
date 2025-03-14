@@ -18,22 +18,23 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        padding:
+            const EdgeInsets.symmetric(horizontal: Dimens.paddingHorizontal),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const LoginLogo(),
-                const SizedBox(height: 32),
+                const SizedBox(height: Dimens.spaceLarge),
                 const LoginTitle(),
-                const SizedBox(height: 24),
+                const SizedBox(height: Dimens.spaceMedium),
                 EmailInput(controller: controller.emailController),
-                const SizedBox(height: 16),
+                const SizedBox(height: Dimens.spaceSmall),
                 PasswordInput(controller: controller.passwordController),
-                const SizedBox(height: 32),
+                const SizedBox(height: Dimens.spaceLarge),
                 LoginButton(controller: controller),
-                const SizedBox(height: 16),
+                const SizedBox(height: Dimens.spaceSmall),
                 const ForgotPasswordButton(),
               ],
             ),

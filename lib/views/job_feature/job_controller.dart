@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
 import 'package:jrc_assement/data/local_data_source/localdata_source.dart';
-import 'package:jrc_assement/data/repository/job_repository.dart';
+import 'package:jrc_assement/data/repository/repository_interface.dart';
 import '../../data/models/job_model.dart';
 import '../../data/remote_data_source/remote_data_source.dart';
+import '../../data/repository/repository.dart';
 import '../../data/services/api_service.dart';
 
 class JobsController extends GetxController {
-  final JobRepository repository = JobRepository(
+  final RepositoryInterface repository = Repository(
       localDataSource: LocalDataSource(),
       remoteDataSource: RemoteDataSource(ApiService()));
   var selectedFilter = "ACTION".obs;
