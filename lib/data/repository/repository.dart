@@ -14,17 +14,8 @@ class Repository implements RepositoryInterface {
   });
 
   @override
-  Future<List<JobModel>> getJobs(String? userId) async {
+  Future<List<JobModel>> getJobs(String userId) async {
     try {
-      if (userId == null || userId.isEmpty) {
-        final cachedJobs = await localDataSource.getJobs();
-        if (cachedJobs.isNotEmpty) {
-          return cachedJobs;
-        } else {
-          throw Exception('No cached jobs available.');
-        }
-      }
-
       final jobs = await remoteDataSource.getJobList(userId);
       await localDataSource.saveJobs(jobs.take(6).toList());
       return await localDataSource.getJobs();

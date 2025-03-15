@@ -13,6 +13,7 @@ class LocalDataSource implements LocalDataSourceInterface {
   Future<void> saveJobs(List<JobModel> jobs) async {
     final isar = await _getIsar();
     await isar.writeTxn(() async {
+      await isar.jobModels.clear();
       await isar.jobModels.putAll(jobs);
     });
   }

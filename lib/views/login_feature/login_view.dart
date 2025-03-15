@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'login_controller.dart';
 import '../../themes/themes.dart';
-import 'widgets/emailInput.dart';
+import 'login_controller.dart';
 import 'widgets/forgotPassword.dart';
 import 'widgets/loginButton.dart';
 import 'widgets/loginTitle.dart';
@@ -29,9 +28,16 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(height: Dimens.spaceLarge),
                 const LoginTitle(),
                 const SizedBox(height: Dimens.spaceMedium),
-                EmailInput(controller: controller.emailController),
+                TextField(
+                  controller: controller.emailController,
+                  decoration: AppThemes.emailInputDecoration,
+                ),
                 const SizedBox(height: Dimens.spaceSmall),
-                PasswordInput(controller: controller.passwordController),
+                TextField(
+                  controller: controller.passwordController,
+                  obscureText: true,
+                  decoration: AppThemes.passwordInputDecoration,
+                ),
                 const SizedBox(height: Dimens.spaceLarge),
                 LoginButton(controller: controller),
                 const SizedBox(height: Dimens.spaceSmall),

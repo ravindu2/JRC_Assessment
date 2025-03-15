@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jrc_assement/data/remote_data_source/remote_data_source.dart';
-import '../../../data/services/api_service.dart';
-import '../../data/local_data_source/localdata_source.dart';
-import '../../data/repository/repository.dart';
+import 'package:jrc_assement/data/repository/repository_interface.dart';
 
 class LoginController extends GetxController {
   final emailController = TextEditingController();
@@ -12,10 +9,8 @@ class LoginController extends GetxController {
   var isLoading = false.obs;
   RxString userId = ''.obs;
 
-  final Repository repository = Repository(
-    localDataSource: LocalDataSource(),
-    remoteDataSource: RemoteDataSource(ApiService()),
-  );
+  final RepositoryInterface repository;
+  LoginController({required this.repository});
 
   @override
   void onInit() {
