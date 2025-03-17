@@ -1,12 +1,13 @@
+import 'package:jrc_assement/data/local_data_source/local_data_source_interface.dart';
 import 'package:jrc_assement/data/models/login_model.dart';
-import '../local_data_source/localdata_source.dart';
-import '../remote_data_source/remote_data_source.dart';
+import 'package:jrc_assement/data/remote_data_source/remote_data_source_interface.dart';
+
 import '../models/job_model.dart';
 import 'repository_interface.dart';
 
 class Repository implements RepositoryInterface {
-  final RemoteDataSource remoteDataSource;
-  final LocalDataSource localDataSource;
+  final RemoteDataSourceInterface remoteDataSource;
+  final LocalDataSourceInterface localDataSource;
 
   Repository({
     required this.localDataSource,

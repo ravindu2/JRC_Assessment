@@ -12,7 +12,7 @@ class IsarInitializer {
 
     if (_isInitializing) {
       while (_isInitializing) {
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(Duration(milliseconds: 100)); //
       }
       return _isar!;
     }

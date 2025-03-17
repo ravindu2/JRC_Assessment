@@ -19,13 +19,15 @@ class JobCount extends StatelessWidget {
         children: [
           Text(
             'Showing $count jobs',
-            style: TextStyle(color: Colors.grey[600]),
+            style:
+                TextStyle(color: Colors.grey[600], fontStyle: FontStyle.italic),
           ),
           GestureDetector(
             onTap: onFilterTap,
             child: Row(
               children: [
-                Icon(Icons.flash_on, color: Colors.blue[300], size: 20),
+                Icon(Icons.flash_on_outlined,
+                    color: Colors.blue[300], size: 20),
                 const SizedBox(width: 4),
                 Text(
                   'Filter',

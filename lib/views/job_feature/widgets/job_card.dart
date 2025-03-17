@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../../data/models/job_model.dart';
 import '../../../themes/themes.dart';
 
@@ -6,6 +7,12 @@ class JobCard extends StatelessWidget {
   final JobModel job;
 
   const JobCard({super.key, required this.job});
+
+  String _formatDate(String dateString) {
+    DateTime date = DateTime.parse(dateString);
+    final DateFormat formatter = DateFormat('dd MMM yyyy');
+    return formatter.format(date);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +30,6 @@ class JobCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Title
             Text(
               job.title,
               style: const TextStyle(
@@ -32,8 +38,6 @@ class JobCard extends StatelessWidget {
                 color: AppColors.titleTextColor,
               ),
             ),
-            const SizedBox(height: Dimens.paddingSmall),
-            // Location
             Text(
               job.location,
               style: TextStyle(
@@ -41,7 +45,7 @@ class JobCard extends StatelessWidget {
                 fontSize: Dimens.fontMedium,
               ),
             ),
-            const SizedBox(height: Dimens.paddingLarge),
+            const SizedBox(height: Dimens.gapsbetweentitle),
             Row(
               children: [
                 Container(
@@ -50,22 +54,20 @@ class JobCard extends StatelessWidget {
                     vertical: Dimens.paddingSmall / 2,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.jobIdColor
-                        .withValues(alpha: (0.2 * 255).toDouble()),
+                    color: AppColors.jobIdColor,
                     borderRadius:
                         BorderRadius.circular(Dimens.borderRadiusSmall),
                   ),
                   child: Text(
                     '#${job.jobNumber}',
                     style: TextStyle(
-                      color: AppColors.jobIdColor,
+                      color: AppColors.statusTextColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: Dimens.fontSmall,
+                      fontSize: Dimens.fontSmallJob,
                     ),
                   ),
                 ),
                 const SizedBox(width: Dimens.paddingSmall),
-                // Status (Tenant posted)
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: Dimens.paddingSmall,
@@ -80,31 +82,28 @@ class JobCard extends StatelessWidget {
                     'Tenant posted',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: Dimens.fontSmall,
+                      fontSize: Dimens.fontSmallJob,
                     ),
                   ),
                 ),
                 const SizedBox(width: Dimens.paddingSmall),
-                // Category (Electrician: Powerpoint)
-                Flexible(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: Dimens.paddingSmall,
-                      vertical: Dimens.paddingSmall / 2,
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: Dimens.paddingSmall,
+                    vertical: Dimens.paddingSmall / 2,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius:
+                        BorderRadius.circular(Dimens.borderRadiusSmall),
+                  ),
+                  child: Text(
+                    job.category,
+                    style: const TextStyle(
+                      fontSize: Dimens.fontSmallJob,
+                      color: Colors.black54,
                     ),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius:
-                          BorderRadius.circular(Dimens.borderRadiusSmall),
-                    ),
-                    child: Text(
-                      job.category,
-                      style: const TextStyle(
-                        fontSize: Dimens.fontSmall,
-                        color: Colors.black54,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 const Spacer(),
@@ -123,7 +122,7 @@ class JobCard extends StatelessWidget {
                       'URGENT',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: Dimens.fontSmall,
+                        fontSize: Dimens.fontSmallJob,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -131,12 +130,12 @@ class JobCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: Dimens.paddingSmall),
-            // Posted Date
             Text(
-              'Posted on ${job.postDate}',
+              'Posted on ${_formatDate(job.postDate)}',
               style: TextStyle(
                 color: AppColors.postDateTextColor,
                 fontSize: Dimens.fontSmall,
+                fontStyle: FontStyle.italic,
               ),
             ),
           ],

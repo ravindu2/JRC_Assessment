@@ -7,34 +7,35 @@ class Dimens {
   static const double spaceMedium = 24.0;
   static const double spaceSmall = 16.0;
 
-  static const double paddingSmall = 8.0;
-  static const double paddingMedium = 16.0;
-  static const double paddingLarge = 24.0;
-  static const double marginSmall = 8.0;
-  static const double marginMedium = 16.0;
+  static const double paddingSmall = 7.6;
+
+  static const double paddingMedium = 12.0;
+  static const double paddingLarge = 15.0;
+  static const double gapsbetweentitle = 7.0;
+  static const double marginSmall = 14.0;
+  static const double marginMedium = 15.0;
   static const double fontSmall = 12.0;
+  static const double fontSmallJob = 10.0;
   static const double fontMedium = 14.0;
-  static const double fontLarge = 16.0;
+  static const double fontLarge = 14.0;
   static const double borderRadiusSmall = 4.0;
   static const double borderRadiusMedium = 8.0;
 }
 
 class AppColors {
-  // General Colors
   static const Color primaryColor = Colors.blueAccent;
   static const Color backgroundColor = Colors.white;
   static const Color textColor = Colors.black87;
   static const Color buttonTextColor = Colors.white;
   static const Color disabledButtonColor = Colors.grey;
 
-  // JobCard Specific Colors
-  static const Color jobIdColor = Colors.green;
+  static const Color jobIdColor = Color(0xFFc0e8d6);
   static const Color statusBackgroundColor = Color(0xFFEEEEEE);
   static const Color statusTextColor = Colors.black87;
   static const Color categoryTextColor = Colors.black87;
   static const Color urgentBackgroundColor = Color(0xFFFFE4E1);
   static const Color urgentTextColor = Colors.pink;
-  static const Color titleTextColor = Colors.black87;
+  static const Color titleTextColor = Colors.black;
   static const Color locationTextColor = Color(0xFF757575);
   static const Color postDateTextColor = Color(0xFF9E9E9E);
 }

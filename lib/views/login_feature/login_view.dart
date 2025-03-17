@@ -4,7 +4,7 @@ import '../../themes/themes.dart';
 import 'login_controller.dart';
 import 'widgets/forgot_password.dart';
 import 'widgets/login_button.dart';
-import 'widgets/loginTitle.dart';
+import 'widgets/login_title.dart';
 import 'widgets/logo.dart';
 
 class LoginScreen extends StatelessWidget {
