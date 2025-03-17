@@ -20,12 +20,9 @@ class Repository implements RepositoryInterface {
       await localDataSource.saveJobs(jobs.take(6).toList());
       return await localDataSource.getJobs();
     } catch (e) {
-      print('Error fetching jobs: $e');
       try {
         final cachedJobs = await localDataSource.getJobs();
-        if (cachedJobs.isNotEmpty) {
-          return cachedJobs;
-        }
+        return cachedJobs;
       } catch (cacheError) {
         print('Error fetching cached jobs: $cacheError');
       }

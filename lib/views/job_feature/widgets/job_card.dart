@@ -50,7 +50,8 @@ class JobCard extends StatelessWidget {
                     vertical: Dimens.paddingSmall / 2,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.jobIdColor.withOpacity(0.2),
+                    color: AppColors.jobIdColor
+                        .withValues(alpha: (0.2 * 255).toDouble()),
                     borderRadius:
                         BorderRadius.circular(Dimens.borderRadiusSmall),
                   ),

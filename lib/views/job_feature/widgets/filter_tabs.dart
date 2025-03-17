@@ -6,11 +6,11 @@ class FilterTabs extends StatelessWidget {
   final Function(String) onFilterChanged;
 
   const FilterTabs({
-    Key? key,
+    super.key,
     required this.filters,
     required this.selectedFilter,
     required this.onFilterChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,8 @@ class FilterTabs extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: isSelected ? Colors.white : Colors.black,
-                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                    fontWeight:
+                        isSelected ? FontWeight.bold : FontWeight.normal,
                   ),
                 ),
               ),

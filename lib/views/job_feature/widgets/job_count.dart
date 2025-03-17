@@ -5,10 +5,10 @@ class JobCount extends StatelessWidget {
   final VoidCallback onFilterTap;
 
   const JobCount({
-    Key? key,
+    super.key,
     required this.count,
     required this.onFilterTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

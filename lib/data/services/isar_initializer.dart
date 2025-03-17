@@ -21,13 +21,11 @@ class IsarInitializer {
     try {
       final dir = await getApplicationDocumentsDirectory();
       _isar = Isar.getInstance('jobInstance');
-      if (_isar == null) {
-        _isar = await Isar.open(
-          [UserModelSchema, JobModelSchema],
-          directory: dir.path,
-          name: 'jobInstance',
-        );
-      }
+      _isar ??= await Isar.open(
+        [UserModelSchema, JobModelSchema],
+        directory: dir.path,
+        name: 'jobInstance',
+      );
       return _isar!;
     } finally {
       _isInitializing = false;

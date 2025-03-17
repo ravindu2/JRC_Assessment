@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../themes/themes.dart';
 import 'login_controller.dart';
-import 'widgets/forgotPassword.dart';
-import 'widgets/loginButton.dart';
+import 'widgets/forgot_password.dart';
+import 'widgets/login_button.dart';
 import 'widgets/loginTitle.dart';
 import 'widgets/logo.dart';
 
