@@ -49,6 +49,7 @@ dependencies:
   flutter_svg: ^2.0.9
   persistent_bottom_nav_bar: ^6.2.1
   retrofit: ^4.4.2
+  pull_to_refresh: ^2.0.0 
 
 dev_dependencies:
   flutter_test:

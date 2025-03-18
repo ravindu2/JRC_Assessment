@@ -59,4 +59,16 @@ class LoginController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  Future<void> refreshLoginData() async {
+    try {
+      isLoading.value = true;
+      emailController.clear();
+      passwordController.clear();
+    } catch (e) {
+      Get.snackbar('Error', 'Refresh failed: $e');
+    } finally {
+      isLoading.value = false;
+    }
+  }
 }
