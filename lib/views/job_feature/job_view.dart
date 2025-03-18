@@ -7,6 +7,7 @@ import 'package:jrc_assement/views/job_feature/widgets/filter_tabs.dart';
 import 'package:jrc_assement/views/job_feature/widgets/job_count.dart';
 import './widgets/bottom_nav_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class JobsScreen extends StatelessWidget {
   const JobsScreen({super.key});
@@ -14,6 +15,8 @@ class JobsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final JobsController controller = Get.find();
+    final RefreshController refreshController =
+        RefreshController(initialRefresh: false);
 
     return Scaffold(
       appBar: _buildAppBar(),
@@ -29,12 +32,20 @@ class JobsScreen extends StatelessWidget {
                 onFilterTap: () {},
               )),
           Expanded(
-            child: Obx(() => ListView.builder(
-                  itemCount: controller.jobs.length,
-                  itemBuilder: (context, index) {
-                    return JobCard(job: controller.jobs[index]);
-                  },
-                )),
+            child: SmartRefresher(
+              controller: refreshController,
+              enablePullDown: true,
+              onRefresh: () async {
+                await controller.refreshJobs();
+                refreshController.refreshCompleted();
+              },
+              child: Obx(() => ListView.builder(
+                    itemCount: controller.jobs.length,
+                    itemBuilder: (context, index) {
+                      return JobCard(job: controller.jobs[index]);
+                    },
+                  )),
+            ),
           ),
         ],
       ),

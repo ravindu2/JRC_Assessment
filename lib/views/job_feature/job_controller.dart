@@ -27,6 +27,14 @@ class JobsController extends GetxController {
     }
   }
 
+  Future<void> refreshJobs() async {
+    try {
+      fetchJobs();
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to refresh jobs: $e');
+    }
+  }
+
   void changeFilter(String filter) {
     selectedFilter.value = filter;
   }
