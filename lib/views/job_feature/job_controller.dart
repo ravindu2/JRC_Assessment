@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:jrc_assement/data/repository/repository_interface.dart';
-import '../../data/models/job_model.dart';
+import 'package:jrc_assement/data/models/job_model.dart';
 
 class JobsController extends GetxController {
   final RepositoryInterface repository;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jrc_assement/themes/themes.dart';
-import 'job_controller.dart';
-import './widgets/job_card.dart';
-import './widgets/filter_tabs.dart';
-import './widgets/job_count.dart';
+import 'package:jrc_assement/views/job_feature/job_controller.dart';
+import 'package:jrc_assement/views/job_feature/widgets/job_card.dart';
+import 'package:jrc_assement/views/job_feature/widgets/filter_tabs.dart';
+import 'package:jrc_assement/views/job_feature/widgets/job_count.dart';
 import './widgets/bottom_nav_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

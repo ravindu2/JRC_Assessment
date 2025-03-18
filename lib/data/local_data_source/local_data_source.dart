@@ -1,8 +1,8 @@
 import 'package:isar/isar.dart';
-import '../models/job_model.dart';
-import '../models/login_model.dart';
-import '../services/isar_initializer.dart';
-import 'local_data_source_interface.dart';
+import 'package:jrc_assement/data/models/job_model.dart';
+import 'package:jrc_assement/data/models/login_model.dart';
+import 'package:jrc_assement/data/services/isar_initializer.dart';
+import 'package:jrc_assement/data/local_data_source/local_data_source_interface.dart';
 
 class LocalDataSource implements LocalDataSourceInterface {
   Future<Isar> _getIsar() async {

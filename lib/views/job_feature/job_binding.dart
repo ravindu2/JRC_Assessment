@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../../data/repository/repository_interface.dart';
+import 'package:jrc_assement/data/repository/repository_interface.dart';
 
 import 'job_controller.dart';
 

@@ -1,7 +1,7 @@
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-import '../models/job_model.dart';
-import '../models/login_model.dart';
+import 'package:jrc_assement/data/models/job_model.dart';
+import 'package:jrc_assement/data/models/login_model.dart';
 
 class IsarInitializer {
   static Isar? _isar;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../themes/themes.dart';
-import 'login_controller.dart';
-import 'widgets/forgot_password.dart';
-import 'widgets/login_button.dart';
-import 'widgets/login_title.dart';
-import 'widgets/logo.dart';
+import 'package:jrc_assement/themes/themes.dart';
+import 'package:jrc_assement/views/login_feature/login_controller.dart';
+import 'package:jrc_assement/views/login_feature/widgets/forgot_password.dart';
+import 'package:jrc_assement/views/login_feature/widgets/login_button.dart';
+import 'package:jrc_assement/views/login_feature/widgets/login_title.dart';
+import 'package:jrc_assement/views/login_feature/widgets/logo.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});

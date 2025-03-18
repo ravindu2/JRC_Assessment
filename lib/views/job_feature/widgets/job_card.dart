@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../../data/models/job_model.dart';
-import '../../../themes/themes.dart';
+import 'package:jrc_assement/data/models/job_model.dart';
+import 'package:jrc_assement/themes/themes.dart';
 
 class JobCard extends StatelessWidget {
   final JobModel job;
