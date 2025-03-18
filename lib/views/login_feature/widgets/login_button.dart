@@ -8,7 +8,7 @@ class LoginButton extends StatelessWidget {
 
   const LoginButton({
     super.key,
-    required this.onPressed,
+    this.onPressed,
     required this.isLoading,
   });
 

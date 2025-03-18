@@ -52,12 +52,12 @@ class JobsScreen extends StatelessWidget {
       actions: [
         IconButton(
           icon: Container(
-            padding: const EdgeInsets.all(Dimens.borderRadiusMedium),
-            height: Dimens.iconSize,
-            width: Dimens.iconSize,
+            padding: const EdgeInsets.all(Dimensions.borderRadiusMedium),
+            height: Dimensions.iconSize,
+            width: Dimensions.iconSize,
             decoration: BoxDecoration(
               color: AppColors.iconContainerColor,
-              borderRadius: BorderRadius.circular(Dimens.iconBoarderRadius),
+              borderRadius: BorderRadius.circular(Dimensions.iconBoarderRadius),
             ),
             child: Center(
                 child: const Icon(
@@ -70,12 +70,12 @@ class JobsScreen extends StatelessWidget {
         ),
         IconButton(
           icon: Container(
-            padding: const EdgeInsets.all(Dimens.borderRadiusMedium),
-            height: Dimens.iconSize,
-            width: Dimens.iconSize,
+            padding: const EdgeInsets.all(Dimensions.borderRadiusMedium),
+            height: Dimensions.iconSize,
+            width: Dimensions.iconSize,
             decoration: BoxDecoration(
               color: AppColors.iconContainerColor,
-              borderRadius: BorderRadius.circular(Dimens.iconBoarderRadius),
+              borderRadius: BorderRadius.circular(Dimensions.iconBoarderRadius),
             ),
             child: SvgPicture.asset(
               'assets/icon_people.svg',
@@ -89,7 +89,7 @@ class JobsScreen extends StatelessWidget {
         ),
         IconButton(
           icon: const Icon(Icons.add_circle, color: AppColors.primaryColor),
-          iconSize: Dimens.iconSize,
+          iconSize: Dimensions.iconSize,
           onPressed: () {},
         ),
       ],

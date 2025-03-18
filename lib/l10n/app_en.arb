@@ -6,5 +6,8 @@
   "inspections":"Inspections",
   "chat":"Chat",
   "notifications":"Notifications",
-  "more":"More"
+  "more":"More",
+  "en_email":"Enter Email",
+  "en_password":"Enter Password"
+
 }

@@ -12,7 +12,7 @@ import 'package:jrc_assement/data/repository/repository_interface.dart';
 import 'package:jrc_assement/data/services/api_service.dart';
 import 'package:jrc_assement/data/services/api_constants.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final dio = Dio(
@@ -40,11 +40,24 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  Future<void> checkLoginStatus() async {
+    final repository = Get.find<RepositoryInterface>();
+
+    if (await repository.isLoggedIn()) {
+      final user = await repository.localusers();
+      Get.offAllNamed('/jobs', arguments: {'userId': user?.userId});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      checkLoginStatus();
+    });
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'jrc assessment',
+      title: 'JRC Assessment',
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

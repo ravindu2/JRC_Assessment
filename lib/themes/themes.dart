@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Dimens {
+class Dimensions {
   static const double paddingHorizontal = 24.0;
   static const double spaceLarge = 32.0;
   static const double spaceMedium = 24.0;

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jrc_assement/themes/themes.dart';
 import 'package:jrc_assement/views/login_feature/login_controller.dart';
-import 'package:jrc_assement/views/login_feature/widgets/forgot_password.dart';
 import 'package:jrc_assement/views/login_feature/widgets/login_button.dart';
 import 'package:jrc_assement/views/login_feature/widgets/login_title.dart';
 import 'package:jrc_assement/views/login_feature/widgets/logo.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -17,30 +17,30 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
-        padding:
-            const EdgeInsets.symmetric(horizontal: Dimens.paddingHorizontal),
+        padding: const EdgeInsets.symmetric(
+            horizontal: Dimensions.paddingHorizontal),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const LoginLogo(),
-                const SizedBox(height: Dimens.spaceLarge),
+                const SizedBox(height: Dimensions.spaceLarge),
                 const LoginTitle(),
-                const SizedBox(height: Dimens.spaceMedium),
+                const SizedBox(height: Dimensions.spaceMedium),
                 TextField(
                   controller: controller.emailController,
                   decoration: InputDecoration(
-                    labelText: 'Enter Email',
+                    labelText: AppLocalizations.of(context)!.en_email,
                     border: UnderlineInputBorder(),
                   ),
                 ),
-                const SizedBox(height: Dimens.spaceSmall),
+                const SizedBox(height: Dimensions.spaceSmall),
                 Obx(() => TextField(
                       controller: controller.passwordController,
                       obscureText: controller.obscureText.value,
                       decoration: InputDecoration(
-                        labelText: 'Enter Password',
+                        labelText: AppLocalizations.of(context)!.en_password,
                         border: UnderlineInputBorder(),
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     )),
-                const SizedBox(height: Dimens.spaceLarge),
+                const SizedBox(height: Dimensions.spaceLarge),
                 Obx(() => LoginButton(
                       onPressed: () => controller.login(
                         controller.emailController.text.trim(),
@@ -62,8 +62,16 @@ class LoginScreen extends StatelessWidget {
                       ),
                       isLoading: controller.isLoading.value,
                     )),
-                const SizedBox(height: Dimens.spaceSmall),
-                const ForgotPasswordButton(),
+                const SizedBox(height: Dimensions.spaceSmall),
+                Center(
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      AppLocalizations.of(context)!.forgotPassword,
+                      style: AppThemes.forgotPasswordTextStyle,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

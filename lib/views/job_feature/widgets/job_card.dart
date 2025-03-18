@@ -18,23 +18,23 @@ class JobCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(
-        horizontal: Dimens.marginMedium,
-        vertical: Dimens.marginSmall,
+        horizontal: Dimensions.marginMedium,
+        vertical: Dimensions.marginSmall,
       ),
       color: Colors.white,
       elevation: 2,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Dimens.borderRadiusMedium),
+        borderRadius: BorderRadius.circular(Dimensions.borderRadiusMedium),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(Dimens.paddingMedium),
+        padding: const EdgeInsets.all(Dimensions.paddingMedium),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               job.title,
               style: const TextStyle(
-                fontSize: Dimens.fontLarge,
+                fontSize: Dimensions.fontLarge,
                 fontWeight: FontWeight.bold,
                 color: AppColors.titleTextColor,
               ),
@@ -43,65 +43,65 @@ class JobCard extends StatelessWidget {
               job.location,
               style: TextStyle(
                 color: AppColors.locationTextColor,
-                fontSize: Dimens.fontMedium,
+                fontSize: Dimensions.fontMedium,
               ),
             ),
-            const SizedBox(height: Dimens.gapsbetweentitle),
+            const SizedBox(height: Dimensions.gapsbetweentitle),
             Row(
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: Dimens.paddingSmall,
-                    vertical: Dimens.paddingSmall / 2,
+                    horizontal: Dimensions.paddingSmall,
+                    vertical: Dimensions.paddingSmall / 2,
                   ),
                   decoration: BoxDecoration(
                     color: AppColors.jobIdColor,
                     borderRadius:
-                        BorderRadius.circular(Dimens.borderRadiusSmall),
+                        BorderRadius.circular(Dimensions.borderRadiusSmall),
                   ),
                   child: Text(
                     '#${job.jobNumber}',
                     style: TextStyle(
                       color: AppColors.statusTextColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: Dimens.fontSmallJob,
+                      fontSize: Dimensions.fontSmallJob,
                     ),
                   ),
                 ),
-                const SizedBox(width: Dimens.paddingSmall),
+                const SizedBox(width: Dimensions.paddingSmall),
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: Dimens.paddingSmall,
-                    vertical: Dimens.paddingSmall / 2,
+                    horizontal: Dimensions.paddingSmall,
+                    vertical: Dimensions.paddingSmall / 2,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.black,
                     borderRadius:
-                        BorderRadius.circular(Dimens.borderRadiusSmall),
+                        BorderRadius.circular(Dimensions.borderRadiusSmall),
                   ),
                   child: const Text(
                     'Tenant posted',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: Dimens.fontSmallJob,
+                      fontSize: Dimensions.fontSmallJob,
                     ),
                   ),
                 ),
-                const SizedBox(width: Dimens.paddingSmall),
+                const SizedBox(width: Dimensions.paddingSmall),
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: Dimens.paddingSmall,
-                    vertical: Dimens.paddingSmall / 2,
+                    horizontal: Dimensions.paddingSmall,
+                    vertical: Dimensions.paddingSmall / 2,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200,
                     borderRadius:
-                        BorderRadius.circular(Dimens.borderRadiusSmall),
+                        BorderRadius.circular(Dimensions.borderRadiusSmall),
                   ),
                   child: Text(
                     job.category,
                     style: const TextStyle(
-                      fontSize: Dimens.fontSmallJob,
+                      fontSize: Dimensions.fontSmallJob,
                       color: Colors.black54,
                     ),
                     overflow: TextOverflow.ellipsis,
@@ -111,31 +111,33 @@ class JobCard extends StatelessWidget {
                 if (true)
                   Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: Dimens.paddingSmall,
-                      vertical: Dimens.paddingSmall / 2,
+                      horizontal: Dimensions.paddingSmall,
+                      vertical: Dimensions.paddingSmall / 2,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.red.shade400,
+                      color: Colors.red.shade400.withOpacity(0.25),
                       borderRadius:
-                          BorderRadius.circular(Dimens.borderRadiusSmall),
+                          BorderRadius.circular(Dimensions.borderRadiusSmall),
                     ),
-                    child: const Text(
-                      'URGENT',
+                    child: Text(
+                      'Urgently', // Matching SwiftUI text
                       style: TextStyle(
-                        color: Colors.white,
-                        fontSize: Dimens.fontSmallJob,
-                        fontWeight: FontWeight.bold,
+                        color: Color.fromRGBO(222, 76, 57, 1),
+                        fontSize: 10.0,
+                        fontFamily: 'AvenirNext-DemiBold',
+                        fontWeight: FontWeight.w600,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
               ],
             ),
-            const SizedBox(height: Dimens.paddingSmall),
+            const SizedBox(height: Dimensions.paddingSmall),
             Text(
               'Posted on ${_formatDate(job.postDate)}',
               style: TextStyle(
                 color: AppColors.postDateTextColor,
-                fontSize: Dimens.fontSmall,
+                fontSize: Dimensions.fontSmall,
                 fontStyle: FontStyle.italic,
               ),
             ),

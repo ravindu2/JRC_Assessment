@@ -15,12 +15,6 @@ class LoginController extends GetxController {
 
   LoginController({required this.repository});
 
-  @override
-  void onInit() {
-    super.onInit();
-    checkLoginStatus();
-  }
-
   void togglePasswordVisibility() {
     obscureText.value = !obscureText.value;
   }
@@ -47,13 +41,6 @@ class LoginController extends GetxController {
       Get.snackbar('Error', 'Login failed: $e');
     } finally {
       isLoading.value = false;
-    }
-  }
-
-  Future<void> checkLoginStatus() async {
-    if (await repository.isLoggedIn()) {
-      final user = await repository.localusers();
-      Get.offAllNamed('/jobs', arguments: {'userId': user?.userId});
     }
   }
 }
