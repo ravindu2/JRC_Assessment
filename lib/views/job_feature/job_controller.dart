@@ -4,7 +4,7 @@ import 'package:jrc_assement/data/models/job_model.dart';
 
 class JobsController extends GetxController {
   final RepositoryInterface repository;
-  var selectedFilter = "ACTION".obs;
+  final selectedFilter = "ACTION".obs;
   final List<String> filters = ["ACTION", "FOLLOW UP", "REVIEW"];
   var jobs = <JobModel>[].obs;
 

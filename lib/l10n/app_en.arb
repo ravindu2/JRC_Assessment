@@ -8,6 +8,11 @@
   "notifications":"Notifications",
   "more":"More",
   "en_email":"Enter Email",
-  "en_password":"Enter Password"
+  "en_password":"Enter Password",
+  "error":"Error",
+  "error_massage_email":"Please enter email and password",
+  "suceess_msg":"Logged in successfully.",
+  "failed_msg":"Login failed: User ID is null.",
+  "unvalid_email_msg":"Enter the valid Email"
 
 }
