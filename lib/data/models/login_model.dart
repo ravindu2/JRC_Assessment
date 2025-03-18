@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'login_model.g.dart';
 
 @Collection()
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class UserModel {
   Id id = Isar.autoIncrement;
 

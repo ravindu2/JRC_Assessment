@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jrc_assement/themes/themes.dart';
 import 'job_controller.dart';
 import './widgets/job_card.dart';
 import './widgets/filter_tabs.dart';
 import './widgets/job_count.dart';
 import './widgets/bottom_nav_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class JobsScreen extends StatelessWidget {
   const JobsScreen({super.key});
@@ -42,23 +44,52 @@ class JobsScreen extends StatelessWidget {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.white,
       elevation: 0,
       title: const Text(
         'Jobs',
-        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        style: TextStyle(color: AppColors.textColor),
       ),
       actions: [
         IconButton(
-          icon: const Icon(Icons.search, color: Colors.black),
+          icon: Container(
+            padding: const EdgeInsets.all(Dimens.borderRadiusMedium),
+            height: Dimens.iconSize,
+            width: Dimens.iconSize,
+            decoration: BoxDecoration(
+              color: AppColors.iconContainerColor,
+              borderRadius: BorderRadius.circular(Dimens.iconBoarderRadius),
+            ),
+            child: Center(
+                child: const Icon(
+              Icons.search,
+              color: Colors.black,
+              size: 19,
+            )),
+          ),
           onPressed: () {},
         ),
         IconButton(
-          icon: const Icon(Icons.person_outline, color: Colors.black),
+          icon: Container(
+            padding: const EdgeInsets.all(Dimens.borderRadiusMedium),
+            height: Dimens.iconSize,
+            width: Dimens.iconSize,
+            decoration: BoxDecoration(
+              color: AppColors.iconContainerColor,
+              borderRadius: BorderRadius.circular(Dimens.iconBoarderRadius),
+            ),
+            child: SvgPicture.asset(
+              'assets/icon_people.svg',
+              width: 23,
+              height: 23,
+              colorFilter:
+                  const ColorFilter.mode(AppColors.textColor, BlendMode.srcIn),
+            ),
+          ),
           onPressed: () {},
         ),
         IconButton(
-          icon: const Icon(Icons.add_circle, color: Colors.blue),
+          icon: const Icon(Icons.add_circle, color: AppColors.primaryColor),
+          iconSize: Dimens.iconSize,
           onPressed: () {},
         ),
       ],

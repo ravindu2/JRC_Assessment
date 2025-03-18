@@ -9,13 +9,20 @@ class LoginController extends GetxController {
   var isLoading = false.obs;
   RxString userId = ''.obs;
 
+  RxBool obscureText = true.obs;
+
   final RepositoryInterface repository;
+
   LoginController({required this.repository});
 
   @override
   void onInit() {
     super.onInit();
     checkLoginStatus();
+  }
+
+  void togglePasswordVisibility() {
+    obscureText.value = !obscureText.value;
   }
 
   Future<void> login(String email, String password) async {

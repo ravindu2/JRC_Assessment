@@ -7,9 +7,9 @@ class ApiConstants {
   static const String loginEndpoint = 'auth/login';
   static const String jobListEndpoint = 'smartView/pm/jobList';
 
-  static const int defaultPageNumber = 1;
-  static const int defaultPageSize = 10;
-  static const int defaultHeaderPm = 102;
+  static const String defaultPageNumber = '1';
+  static const String defaultPageSize = '10';
+  static const String defaultHeaderPm = '102';
 
   static const Map<String, String> defaultHeaders = {
     'Connection': 'keep-alive',

@@ -30,7 +30,7 @@ const JobModelSchema = CollectionSchema(
     r'isUrgent': PropertySchema(
       id: 2,
       name: r'isUrgent',
-      type: IsarType.bool,
+      type: IsarType.long,
     ),
     r'jobNumber': PropertySchema(
       id: 3,
@@ -47,13 +47,8 @@ const JobModelSchema = CollectionSchema(
       name: r'postDate',
       type: IsarType.string,
     ),
-    r'quoteAvailable': PropertySchema(
-      id: 6,
-      name: r'quoteAvailable',
-      type: IsarType.bool,
-    ),
     r'title': PropertySchema(
-      id: 7,
+      id: 6,
       name: r'title',
       type: IsarType.string,
     )
@@ -95,12 +90,11 @@ void _jobModelSerialize(
 ) {
   writer.writeString(offsets[0], object.category);
   writer.writeString(offsets[1], object.id);
-  writer.writeBool(offsets[2], object.isUrgent);
+  writer.writeLong(offsets[2], object.isUrgent);
   writer.writeString(offsets[3], object.jobNumber);
   writer.writeString(offsets[4], object.location);
   writer.writeString(offsets[5], object.postDate);
-  writer.writeBool(offsets[6], object.quoteAvailable);
-  writer.writeString(offsets[7], object.title);
+  writer.writeString(offsets[6], object.title);
 }
 
 JobModel _jobModelDeserialize(
@@ -112,12 +106,11 @@ JobModel _jobModelDeserialize(
   final object = JobModel(
     category: reader.readString(offsets[0]),
     id: reader.readString(offsets[1]),
-    isUrgent: reader.readBool(offsets[2]),
+    isUrgent: reader.readLong(offsets[2]),
     jobNumber: reader.readString(offsets[3]),
     location: reader.readString(offsets[4]),
     postDate: reader.readString(offsets[5]),
-    quoteAvailable: reader.readBool(offsets[6]),
-    title: reader.readString(offsets[7]),
+    title: reader.readString(offsets[6]),
   );
   object.isarId = id;
   return object;
@@ -135,7 +128,7 @@ P _jobModelDeserializeProp<P>(
     case 1:
       return (reader.readString(offset)) as P;
     case 2:
-      return (reader.readBool(offset)) as P;
+      return (reader.readLong(offset)) as P;
     case 3:
       return (reader.readString(offset)) as P;
     case 4:
@@ -143,8 +136,6 @@ P _jobModelDeserializeProp<P>(
     case 5:
       return (reader.readString(offset)) as P;
     case 6:
-      return (reader.readBool(offset)) as P;
-    case 7:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -503,11 +494,54 @@ extension JobModelQueryFilter
   }
 
   QueryBuilder<JobModel, JobModel, QAfterFilterCondition> isUrgentEqualTo(
-      bool value) {
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'isUrgent',
         value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> isUrgentGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'isUrgent',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> isUrgentLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'isUrgent',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> isUrgentBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'isUrgent',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
       ));
     });
   }
@@ -956,16 +990,6 @@ extension JobModelQueryFilter
     });
   }
 
-  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> quoteAvailableEqualTo(
-      bool value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'quoteAvailable',
-        value: value,
-      ));
-    });
-  }
-
   QueryBuilder<JobModel, JobModel, QAfterFilterCondition> titleEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1176,18 +1200,6 @@ extension JobModelQuerySortBy on QueryBuilder<JobModel, JobModel, QSortBy> {
     });
   }
 
-  QueryBuilder<JobModel, JobModel, QAfterSortBy> sortByQuoteAvailable() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'quoteAvailable', Sort.asc);
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterSortBy> sortByQuoteAvailableDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'quoteAvailable', Sort.desc);
-    });
-  }
-
   QueryBuilder<JobModel, JobModel, QAfterSortBy> sortByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
@@ -1287,18 +1299,6 @@ extension JobModelQuerySortThenBy
     });
   }
 
-  QueryBuilder<JobModel, JobModel, QAfterSortBy> thenByQuoteAvailable() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'quoteAvailable', Sort.asc);
-    });
-  }
-
-  QueryBuilder<JobModel, JobModel, QAfterSortBy> thenByQuoteAvailableDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'quoteAvailable', Sort.desc);
-    });
-  }
-
   QueryBuilder<JobModel, JobModel, QAfterSortBy> thenByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
@@ -1355,12 +1355,6 @@ extension JobModelQueryWhereDistinct
     });
   }
 
-  QueryBuilder<JobModel, JobModel, QDistinct> distinctByQuoteAvailable() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'quoteAvailable');
-    });
-  }
-
   QueryBuilder<JobModel, JobModel, QDistinct> distinctByTitle(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1389,7 +1383,7 @@ extension JobModelQueryProperty
     });
   }
 
-  QueryBuilder<JobModel, bool, QQueryOperations> isUrgentProperty() {
+  QueryBuilder<JobModel, int, QQueryOperations> isUrgentProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'isUrgent');
     });
@@ -1413,15 +1407,34 @@ extension JobModelQueryProperty
     });
   }
 
-  QueryBuilder<JobModel, bool, QQueryOperations> quoteAvailableProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'quoteAvailable');
-    });
-  }
-
   QueryBuilder<JobModel, String, QQueryOperations> titleProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'title');
     });
   }
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+JobModel _$JobModelFromJson(Map<String, dynamic> json) => JobModel(
+      id: json['id'] as String,
+      title: json['title'] as String,
+      location: json['address'] as String,
+      category: json['primaryJobType'] as String,
+      jobNumber: json['jobNumber'] as String,
+      isUrgent: (json['urgencyTypeId'] as num).toInt(),
+      postDate: json['postedDateTime'] as String,
+    );
+
+Map<String, dynamic> _$JobModelToJson(JobModel instance) => <String, dynamic>{
+      'isarId': instance.isarId,
+      'id': instance.id,
+      'title': instance.title,
+      'address': instance.location,
+      'primaryJobType': instance.category,
+      'jobNumber': instance.jobNumber,
+      'urgencyTypeId': instance.isUrgent,
+      'postedDateTime': instance.postDate,
+    };

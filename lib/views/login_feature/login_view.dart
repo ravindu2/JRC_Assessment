@@ -30,16 +30,38 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(height: Dimens.spaceMedium),
                 TextField(
                   controller: controller.emailController,
-                  decoration: AppThemes.emailInputDecoration,
+                  decoration: InputDecoration(
+                    labelText: 'Enter Email',
+                    border: UnderlineInputBorder(),
+                  ),
                 ),
                 const SizedBox(height: Dimens.spaceSmall),
-                TextField(
-                  controller: controller.passwordController,
-                  obscureText: true,
-                  decoration: AppThemes.passwordInputDecoration,
-                ),
+                Obx(() => TextField(
+                      controller: controller.passwordController,
+                      obscureText: controller.obscureText.value,
+                      decoration: InputDecoration(
+                        labelText: 'Enter Password',
+                        border: UnderlineInputBorder(),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            controller.obscureText.value
+                                ? Icons.lock_outline
+                                : Icons.lock_open_outlined,
+                          ),
+                          onPressed: () {
+                            controller.togglePasswordVisibility();
+                          },
+                        ),
+                      ),
+                    )),
                 const SizedBox(height: Dimens.spaceLarge),
-                LoginButton(controller: controller),
+                Obx(() => LoginButton(
+                      onPressed: () => controller.login(
+                        controller.emailController.text.trim(),
+                        controller.passwordController.text.trim(),
+                      ),
+                      isLoading: controller.isLoading.value,
+                    )),
                 const SizedBox(height: Dimens.spaceSmall),
                 const ForgotPasswordButton(),
               ],

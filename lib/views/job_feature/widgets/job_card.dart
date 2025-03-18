@@ -21,6 +21,7 @@ class JobCard extends StatelessWidget {
         horizontal: Dimens.marginMedium,
         vertical: Dimens.marginSmall,
       ),
+      color: Colors.white,
       elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Dimens.borderRadiusMedium),
@@ -107,7 +108,7 @@ class JobCard extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                if (job.isUrgent)
+                if (true)
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: Dimens.paddingSmall,

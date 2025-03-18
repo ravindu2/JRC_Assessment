@@ -1,17 +1,33 @@
 import 'package:isar/isar.dart';
+import 'package:json_annotation/json_annotation.dart';
+
 part 'job_model.g.dart';
 
 @collection
+@JsonSerializable()
 class JobModel {
   Id isarId = Isar.autoIncrement;
+
+  @JsonKey(name: 'id')
   final String id;
+
+  @JsonKey(name: 'title')
   final String title;
+
+  @JsonKey(name: 'address')
   final String location;
+
+  @JsonKey(name: 'primaryJobType')
   final String category;
+
+  @JsonKey(name: 'jobNumber')
   final String jobNumber;
-  final bool isUrgent;
+
+  @JsonKey(name: 'urgencyTypeId')
+  final int isUrgent;
+
+  @JsonKey(name: 'postedDateTime')
   final String postDate;
-  final bool quoteAvailable;
 
   JobModel({
     required this.id,
@@ -21,19 +37,10 @@ class JobModel {
     required this.jobNumber,
     required this.isUrgent,
     required this.postDate,
-    required this.quoteAvailable,
   });
 
-  factory JobModel.fromJson(Map<String, dynamic> json) {
-    return JobModel(
-      id: json['id'] ?? '',
-      title: json['title'] ?? '',
-      location: json['address'] ?? '',
-      category: json['primaryJobType'] ?? '',
-      jobNumber: json['jobNumber'] ?? '',
-      isUrgent: (json['urgencyTypeId'] == 1),
-      postDate: json['postedDateTime'] ?? '',
-      quoteAvailable: json['price'] != null && json['price'] != '0.000000',
-    );
-  }
+  factory JobModel.fromJson(Map<String, dynamic> json) =>
+      _$JobModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$JobModelToJson(this);
 }

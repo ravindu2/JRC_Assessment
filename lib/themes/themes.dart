@@ -9,7 +9,7 @@ class Dimens {
 
   static const double paddingSmall = 7.6;
 
-  static const double paddingMedium = 12.0;
+  static const double paddingMedium = 16.0;
   static const double paddingLarge = 15.0;
   static const double gapsbetweentitle = 7.0;
   static const double marginSmall = 14.0;
@@ -20,12 +20,14 @@ class Dimens {
   static const double fontLarge = 14.0;
   static const double borderRadiusSmall = 4.0;
   static const double borderRadiusMedium = 8.0;
+  static const double iconSize = 32.0;
+  static const double iconBoarderRadius = 26.0;
 }
 
 class AppColors {
-  static const Color primaryColor = Colors.blueAccent;
+  static const Color primaryColor = Color.fromRGBO(20, 129, 222, 1.0);
   static const Color backgroundColor = Colors.white;
-  static const Color textColor = Colors.black87;
+  static const Color textColor = Colors.black;
   static const Color buttonTextColor = Colors.white;
   static const Color disabledButtonColor = Colors.grey;
 
@@ -38,6 +40,7 @@ class AppColors {
   static const Color titleTextColor = Colors.black;
   static const Color locationTextColor = Color(0xFF757575);
   static const Color postDateTextColor = Color(0xFF9E9E9E);
+  static const Color iconContainerColor = Color.fromRGBO(230, 230, 230, 1);
 }
 
 class AppThemes {
@@ -56,17 +59,6 @@ class AppThemes {
   static const TextStyle forgotPasswordTextStyle = TextStyle(
     color: AppColors.primaryColor,
     decoration: TextDecoration.underline,
-  );
-
-  static const InputDecoration emailInputDecoration = InputDecoration(
-    labelText: 'Enter Email',
-    border: UnderlineInputBorder(),
-  );
-
-  static const InputDecoration passwordInputDecoration = InputDecoration(
-    labelText: 'Enter Password',
-    border: UnderlineInputBorder(),
-    suffixIcon: Icon(Icons.lock_outline),
   );
 
   static ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(

@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jrc_assement/routes/app_pages.dart';
@@ -9,17 +10,28 @@ import 'package:jrc_assement/data/remote_data_source/remote_data_source.dart';
 import 'package:jrc_assement/data/repository/repository.dart';
 import 'package:jrc_assement/data/repository/repository_interface.dart';
 import 'package:jrc_assement/data/services/api_service.dart';
+import 'package:jrc_assement/data/services/api_constants.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  /// ✅ Initialize Repository globally before running the app
+  final dio = Dio(
+    BaseOptions(
+      baseUrl: ApiConstants.baseUrl,
+      connectTimeout: Duration(milliseconds: ApiConstants.connectTimeout),
+      receiveTimeout: Duration(milliseconds: ApiConstants.receiveTimeout),
+      headers: ApiConstants.defaultHeaders,
+    ),
+  );
+
+  final apiService = ApiService(dio);
+
   Get.put<RepositoryInterface>(
     Repository(
       localDataSource: LocalDataSource(),
-      remoteDataSource: RemoteDataSource(ApiService()),
+      remoteDataSource: RemoteDataSource(apiService),
     ),
-    permanent: true, // Keeps it alive throughout the app lifecycle
+    permanent: true,
   );
 
   runApp(const MyApp());
