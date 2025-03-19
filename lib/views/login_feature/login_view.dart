@@ -38,32 +38,9 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: Dimensions.spaceLarge),
                   const LoginTitle(),
                   const SizedBox(height: Dimensions.spaceMedium),
-                  TextField(
-                    controller: controller.emailController,
-                    decoration: InputDecoration(
-                      labelText: AppLocalizations.of(context)!.en_email,
-                      border: UnderlineInputBorder(),
-                    ),
-                  ),
+                  _buildEmailTextField(context),
                   const SizedBox(height: Dimensions.spaceSmall),
-                  Obx(() => TextField(
-                        controller: controller.passwordController,
-                        obscureText: controller.obscureText.value,
-                        decoration: InputDecoration(
-                          labelText: AppLocalizations.of(context)!.en_password,
-                          border: UnderlineInputBorder(),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              controller.obscureText.value
-                                  ? Icons.lock_outline
-                                  : Icons.lock_open_outlined,
-                            ),
-                            onPressed: () {
-                              controller.togglePasswordVisibility();
-                            },
-                          ),
-                        ),
-                      )),
+                  _buildPasswordTextField(context),
                   const SizedBox(height: Dimensions.spaceLarge),
                   Obx(() => LoginButton(
                         onPressed: () => controller.login(
@@ -73,19 +50,54 @@ class LoginScreen extends StatelessWidget {
                         isLoading: controller.isLoading.value,
                       )),
                   const SizedBox(height: Dimensions.spaceSmall),
-                  Center(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        AppLocalizations.of(context)!.forgotPassword,
-                        style: AppThemes.forgotPasswordTextStyle,
-                      ),
-                    ),
-                  ),
+                  _buildForgotPasswordButton(context),
                 ],
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEmailTextField(BuildContext context) {
+    return TextField(
+      controller: controller.emailController,
+      decoration: InputDecoration(
+        labelText: AppLocalizations.of(context)!.en_email,
+        border: const UnderlineInputBorder(),
+      ),
+    );
+  }
+
+  Widget _buildPasswordTextField(BuildContext context) {
+    return Obx(() => TextField(
+          controller: controller.passwordController,
+          obscureText: controller.obscureText.value,
+          decoration: InputDecoration(
+            labelText: AppLocalizations.of(context)!.en_password,
+            border: const UnderlineInputBorder(),
+            suffixIcon: IconButton(
+              icon: Icon(
+                controller.obscureText.value
+                    ? Icons.lock_outline
+                    : Icons.lock_open_outlined,
+              ),
+              onPressed: () {
+                controller.togglePasswordVisibility();
+              },
+            ),
+          ),
+        ));
+  }
+
+  Widget _buildForgotPasswordButton(BuildContext context) {
+    return Center(
+      child: TextButton(
+        onPressed: () {},
+        child: Text(
+          AppLocalizations.of(context)!.forgotPassword,
+          style: AppThemes.forgotPasswordTextStyle,
         ),
       ),
     );

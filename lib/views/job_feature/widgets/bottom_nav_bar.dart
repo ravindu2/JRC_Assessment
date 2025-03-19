@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jrc_assement/themes/themes.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key});
@@ -8,24 +10,37 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.blue,
-      unselectedItemColor: Colors.grey,
+      selectedItemColor: AppColors.primaryColor,
+      unselectedItemColor: AppColors.textColor,
       items: [
         BottomNavigationBarItem(
-          icon: const Icon(Icons.calendar_today),
+          icon:
+              SvgPicture.asset('assets/image/jobs.svg', width: 24, height: 24),
           label: AppLocalizations.of(context)!.jobs,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.insert_chart_outlined),
+          icon: SvgPicture.asset('assets/image/inspections.svg',
+              width: 24, height: 24),
           label: AppLocalizations.of(context)!.inspections,
         ),
         BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble_outline),
-            label: AppLocalizations.of(context)!.chat),
+          icon: SvgPicture.asset(
+            'assets/image/chat.svg',
+            width: 24,
+            height: 24,
+          ),
+          label: AppLocalizations.of(context)!.chat,
+        ),
         BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_none),
-            label: AppLocalizations.of(context)!.more),
-        const BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'More'),
+          icon: SvgPicture.asset('assets/image/notification.svg',
+              width: 24, height: 24),
+          label: AppLocalizations.of(context)!.more,
+        ),
+        BottomNavigationBarItem(
+          icon:
+              SvgPicture.asset('assets/image/more.svg', width: 20, height: 14),
+          label: 'More',
+        ),
       ],
       currentIndex: 0,
     );

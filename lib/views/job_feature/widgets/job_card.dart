@@ -58,7 +58,7 @@ class JobCard extends StatelessWidget {
       job.location,
       style: TextStyle(
         color: AppColors.locationTextColor,
-        fontSize: Dimensions.fontMedium,
+        fontSize: Dimensions.fontSmall,
       ),
     );
   }
@@ -90,7 +90,7 @@ class JobCard extends StatelessWidget {
       child: Text(
         '#${job.jobNumber}',
         style: TextStyle(
-          color: AppColors.statusTextColor,
+          color: AppColors.textColor,
           fontWeight: FontWeight.bold,
           fontSize: Dimensions.fontSmallJob,
         ),
@@ -105,7 +105,7 @@ class JobCard extends StatelessWidget {
         vertical: Dimensions.paddingSmall / 2,
       ),
       decoration: BoxDecoration(
-        color: AppColors.categoryTextColor,
+        color: AppColors.textColor,
         borderRadius: BorderRadius.circular(Dimensions.borderRadiusSmall),
       ),
       child: const Text(

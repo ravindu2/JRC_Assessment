@@ -13,6 +13,14 @@
   "error_massage_email":"Please enter email and password",
   "suceess_msg":"Logged in successfully.",
   "failed_msg":"Login failed: User ID is null.",
-  "unvalid_email_msg":"Enter the valid Email"
+  "unvalid_email_msg":"Enter the valid Email",
+  "loginFailed": "Login failed: {error}",
+  "@loginFailed": {
+    "description": "Error message when login fails",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "success":"Success"
 
 }

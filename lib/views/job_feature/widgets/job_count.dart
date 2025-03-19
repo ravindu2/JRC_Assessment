@@ -30,8 +30,11 @@ class JobCount extends StatelessWidget {
             onTap: onFilterTap,
             child: Row(
               children: [
-                Icon(Icons.flash_on_outlined,
-                    color: AppColors.primaryColor, size: 20),
+                Icon(
+                  Icons.flash_on_outlined,
+                  color: AppColors.primaryColor,
+                  size: Dimensions.iconsizesmall,
+                ),
                 const SizedBox(width: 4),
                 Text(
                   'Filter',

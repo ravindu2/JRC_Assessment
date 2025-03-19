@@ -1426,7 +1426,7 @@ JobModel _$JobModelFromJson(Map<String, dynamic> json) => JobModel(
       jobNumber: json['jobNumber'] as String,
       isUrgent: (json['urgencyTypeId'] as num).toInt(),
       postDate: json['postedDateTime'] as String,
-    );
+    )..isarId = (json['isarId'] as num).toInt();
 
 Map<String, dynamic> _$JobModelToJson(JobModel instance) => <String, dynamic>{
       'isarId': instance.isarId,

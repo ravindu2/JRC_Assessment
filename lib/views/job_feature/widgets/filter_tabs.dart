@@ -16,9 +16,6 @@ class FilterTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-          horizontal: Dimensions.spaceSmall,
-          vertical: Dimensions.borderRadiusMedium),
       margin: const EdgeInsets.symmetric(horizontal: Dimensions.spaceSmall),
       decoration: BoxDecoration(
         color: AppColors.backgroundColor,
@@ -31,15 +28,18 @@ class FilterTabs extends StatelessWidget {
             child: GestureDetector(
               onTap: () => onFilterChanged(filter),
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                    vertical: Dimensions.paddingMedium),
                 decoration: BoxDecoration(
-                  color: isSelected ? Colors.blue : Colors.transparent,
+                  color:
+                      isSelected ? AppColors.primaryColor : Colors.transparent,
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Text(
                   filter,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontFamily: 'AvenirNext',
                     fontSize: Dimensions.fontSmall,
                     color: isSelected ? Colors.white : Colors.black,
                     fontWeight:

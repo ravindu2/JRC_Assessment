@@ -1,7 +1,6 @@
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:jrc_assement/data/models/job_model.dart';
-import 'package:jrc_assement/data/models/login_model.dart';
 
 class IsarInitializer {
   static Isar? _isar;
@@ -12,7 +11,7 @@ class IsarInitializer {
       final dir = await getApplicationDocumentsDirectory();
       _isar = Isar.getInstance('jobInstance');
       _isar ??= await Isar.open(
-        [UserModelSchema, JobModelSchema],
+        [JobModelSchema],
         directory: dir.path,
         name: 'jobInstance',
       );

@@ -8,6 +8,7 @@ import 'package:jrc_assement/views/job_feature/widgets/job_count.dart';
 import './widgets/bottom_nav_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class JobsScreen extends StatelessWidget {
   const JobsScreen({super.key});
@@ -19,7 +20,8 @@ class JobsScreen extends StatelessWidget {
         RefreshController(initialRefresh: false);
 
     return Scaffold(
-      appBar: _buildAppBar(),
+      backgroundColor: AppColors.jobBackgroundColor,
+      appBar: _buildAppBar(context),
       body: SmartRefresher(
         controller: refreshController,
         enablePullDown: true,
@@ -34,6 +36,9 @@ class JobsScreen extends StatelessWidget {
                   selectedFilter: controller.selectedFilter.value,
                   onFilterChanged: controller.changeFilter,
                 )),
+            const SizedBox(
+              height: Dimensions.spaceSmall,
+            ),
             Obx(() => JobCount(
                   count: controller.jobs.length,
                   onFilterTap: () {},
@@ -53,12 +58,15 @@ class JobsScreen extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar() {
+  AppBar _buildAppBar(BuildContext context) {
     return AppBar(
-      elevation: 0,
-      title: const Text(
-        'Jobs',
-        style: TextStyle(color: AppColors.textColor),
+      backgroundColor: AppColors.jobBackgroundColor,
+      title: Text(
+        AppLocalizations.of(context)!.jobs,
+        style: const TextStyle(
+          fontSize: Dimensions.spaceMedium,
+          color: AppColors.textColor,
+        ),
       ),
       actions: [
         IconButton(
@@ -90,7 +98,7 @@ class JobsScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(Dimensions.iconBoarderRadius),
             ),
             child: SvgPicture.asset(
-              'assets/icon_people.svg',
+              'assets/image/icon_people.svg',
               width: 23,
               height: 23,
               colorFilter:

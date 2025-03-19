@@ -6,6 +6,7 @@ class Dimensions {
   static const double spaceMedium = 24.0;
   static const double spaceSmall = 16.0;
   static const double paddingSmall = 7.6;
+  static const double paddingmedium = 12;
 
   static const double paddingMedium = 16.0;
   static const double paddingLarge = 15.0;
@@ -14,28 +15,27 @@ class Dimensions {
   static const double marginMedium = 15.0;
   static const double fontSmall = 12.0;
   static const double fontSmallJob = 10.0;
-  static const double fontMedium = 14.0;
   static const double fontLarge = 14.0;
   static const double borderRadiusSmall = 4.0;
   static const double borderRadiusMedium = 8.0;
   static const double iconSize = 32.0;
   static const double iconBoarderRadius = 26.0;
+  static const double iconsizesmall = 20.0;
 }
 
 class AppColors {
   static const Color primaryColor = Color.fromRGBO(20, 129, 222, 1.0);
   static const Color backgroundColor = Colors.white;
+  static const Color jobBackgroundColor = Color(0xFFF2F2F2);
   static const Color textColor = Colors.black;
   static const Color buttonTextColor = Colors.white;
   static const Color disabledButtonColor = Colors.grey;
 
   static const Color jobIdColor = Color(0xFFc0e8d6);
   static const Color statusBackgroundColor = Color(0xFFEEEEEE);
-  static const Color statusTextColor = Colors.black87;
-  static const Color categoryTextColor = Colors.black87;
   static const Color urgentBackgroundColor = Color(0xFFFFE4E1);
   static const Color titleTextColor = Colors.black;
-  static const Color locationTextColor = Color(0xFF757575);
+  static const Color locationTextColor = Color(0xCC000000);
   static const Color postDateTextColor = Color(0xFF9E9E9E);
   static const Color iconContainerColor = Color.fromRGBO(230, 230, 230, 1);
   static const Color urgentTextColour = Color.fromRGBO(222, 76, 57, 1);

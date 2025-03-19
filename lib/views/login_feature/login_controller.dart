@@ -45,16 +45,17 @@ class LoginController extends GetxController {
       final user = await repository.login(email, password);
       if (user.isEmailConfirmed) {
         Get.snackbar(
-          'Success',
+          AppLocalizations.of(Get.overlayContext!)!.success,
           AppLocalizations.of(Get.overlayContext!)!.suceess_msg,
         );
         Get.offAllNamed('/jobs', arguments: {'userId': user.userId});
       } else {
-        Get.snackbar('Error',
+        Get.snackbar(AppLocalizations.of(Get.overlayContext!)!.error,
             AppLocalizations.of(Get.overlayContext!)!.unvalid_email_msg);
       }
     } catch (e) {
-      Get.snackbar('Error', 'Login failed: $e');
+      Get.snackbar(AppLocalizations.of(Get.overlayContext!)!.error,
+          AppLocalizations.of(Get.overlayContext!)!.loginFailed(e));
     } finally {
       isLoading.value = false;
     }
@@ -65,8 +66,6 @@ class LoginController extends GetxController {
       isLoading.value = true;
       emailController.clear();
       passwordController.clear();
-    } catch (e) {
-      Get.snackbar('Error', 'Refresh failed: $e');
     } finally {
       isLoading.value = false;
     }
