@@ -17,17 +17,15 @@ class Repository implements RepositoryInterface {
   @override
   Future<List<JobModel>> getJobs(String userId) async {
     try {
+      final cachedJobs = await localDataSource.getJobs();
+      if (cachedJobs.isNotEmpty) {
+        return cachedJobs;
+      }
       final jobs = await remoteDataSource.getJobList(userId);
       await localDataSource.saveJobs(jobs.take(6).toList());
       return await localDataSource.getJobs();
     } catch (e) {
-      try {
-        final cachedJobs = await localDataSource.getJobs();
-        return cachedJobs;
-      } catch (cacheError) {
-        print('Error fetching cached jobs: $cacheError');
-      }
-      throw Exception('Failed to fetch jobs: $e');
+      throw Exception('Failed to fetch initial jobs: $e');
     }
   }
 

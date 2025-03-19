@@ -35,11 +35,11 @@ class AppColors {
   static const Color statusTextColor = Colors.black87;
   static const Color categoryTextColor = Colors.black87;
   static const Color urgentBackgroundColor = Color(0xFFFFE4E1);
-  static const Color urgentTextColor = Colors.pink;
   static const Color titleTextColor = Colors.black;
   static const Color locationTextColor = Color(0xFF757575);
   static const Color postDateTextColor = Color(0xFF9E9E9E);
   static const Color iconContainerColor = Color.fromRGBO(230, 230, 230, 1);
+  static const Color urgentTextColour = Color.fromRGBO(222, 76, 57, 1);
 }
 
 class AppThemes {

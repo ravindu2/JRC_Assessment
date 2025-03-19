@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jrc_assement/themes/themes.dart';
 
 class FilterTabs extends StatelessWidget {
   final List<String> filters;
@@ -15,7 +16,14 @@ class FilterTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(
+          horizontal: Dimensions.spaceSmall,
+          vertical: Dimensions.borderRadiusMedium),
+      margin: const EdgeInsets.symmetric(horizontal: Dimensions.spaceSmall),
+      decoration: BoxDecoration(
+        color: AppColors.backgroundColor,
+        borderRadius: BorderRadius.circular(25),
+      ),
       child: Row(
         children: filters.map((filter) {
           bool isSelected = selectedFilter == filter;

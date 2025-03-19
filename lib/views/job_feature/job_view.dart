@@ -20,25 +20,25 @@ class JobsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: _buildAppBar(),
-      body: Column(
-        children: [
-          Obx(() => FilterTabs(
-                filters: controller.filters,
-                selectedFilter: controller.selectedFilter.value,
-                onFilterChanged: controller.changeFilter,
-              )),
-          Obx(() => JobCount(
-                count: controller.jobs.length,
-                onFilterTap: () {},
-              )),
-          Expanded(
-            child: SmartRefresher(
-              controller: refreshController,
-              enablePullDown: true,
-              onRefresh: () async {
-                await controller.refreshJobs();
-                refreshController.refreshCompleted();
-              },
+      body: SmartRefresher(
+        controller: refreshController,
+        enablePullDown: true,
+        onRefresh: () async {
+          await controller.refreshJobs();
+          refreshController.refreshCompleted();
+        },
+        child: Column(
+          children: [
+            Obx(() => FilterTabs(
+                  filters: controller.filters,
+                  selectedFilter: controller.selectedFilter.value,
+                  onFilterChanged: controller.changeFilter,
+                )),
+            Obx(() => JobCount(
+                  count: controller.jobs.length,
+                  onFilterTap: () {},
+                )),
+            Expanded(
               child: Obx(() => ListView.builder(
                     itemCount: controller.jobs.length,
                     itemBuilder: (context, index) {
@@ -46,8 +46,8 @@ class JobsScreen extends StatelessWidget {
                     },
                   )),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: const BottomNavBar(),
     );
@@ -70,12 +70,13 @@ class JobsScreen extends StatelessWidget {
               color: AppColors.iconContainerColor,
               borderRadius: BorderRadius.circular(Dimensions.iconBoarderRadius),
             ),
-            child: Center(
-                child: const Icon(
-              Icons.search,
-              color: Colors.black,
-              size: 19,
-            )),
+            child: const Center(
+              child: Icon(
+                Icons.search,
+                color: Colors.black,
+                size: 19,
+              ),
+            ),
           ),
           onPressed: () {},
         ),

@@ -5,19 +5,9 @@ import 'package:jrc_assement/data/models/login_model.dart';
 
 class IsarInitializer {
   static Isar? _isar;
-  static bool _isInitializing = false;
 
   static Future<Isar> initialize() async {
     if (_isar != null) return _isar!;
-
-    if (_isInitializing) {
-      while (_isInitializing) {
-        await Future.delayed(Duration(milliseconds: 100)); //
-      }
-      return _isar!;
-    }
-
-    _isInitializing = true;
     try {
       final dir = await getApplicationDocumentsDirectory();
       _isar = Isar.getInstance('jobInstance');
@@ -27,8 +17,8 @@ class IsarInitializer {
         name: 'jobInstance',
       );
       return _isar!;
-    } finally {
-      _isInitializing = false;
+    } catch (e) {
+      throw Exception("failed to isar initialized");
     }
   }
 
