@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:jrc_assement/data/repository/repository_interface.dart';
 import 'package:jrc_assement/data/models/job_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class JobsController extends GetxController {
   final RepositoryInterface repository;
@@ -23,7 +24,8 @@ class JobsController extends GetxController {
       final jobList = await repository.getJobs(userId);
       jobs.assignAll(jobList);
     } catch (e) {
-      Get.snackbar('Error', 'Failed to load jobs: $e');
+      Get.snackbar(AppLocalizations.of(Get.overlayContext!)!.error,
+          AppLocalizations.of(Get.overlayContext!)!.jobs_fails(e));
     }
   }
 
@@ -31,7 +33,8 @@ class JobsController extends GetxController {
     try {
       fetchJobs();
     } catch (e) {
-      Get.snackbar('Error', 'Failed to refresh jobs: $e');
+      Get.snackbar(AppLocalizations.of(Get.overlayContext!)!.error,
+          'Failed to refresh jobs');
     }
   }
 

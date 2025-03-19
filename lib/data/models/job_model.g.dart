@@ -47,8 +47,13 @@ const JobModelSchema = CollectionSchema(
       name: r'postDate',
       type: IsarType.string,
     ),
-    r'title': PropertySchema(
+    r'postedBy': PropertySchema(
       id: 6,
+      name: r'postedBy',
+      type: IsarType.string,
+    ),
+    r'title': PropertySchema(
+      id: 7,
       name: r'title',
       type: IsarType.string,
     )
@@ -74,10 +79,16 @@ int _jobModelEstimateSize(
 ) {
   var bytesCount = offsets.last;
   bytesCount += 3 + object.category.length * 3;
-  bytesCount += 3 + object.id.length * 3;
+  {
+    final value = object.id;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   bytesCount += 3 + object.jobNumber.length * 3;
   bytesCount += 3 + object.location.length * 3;
   bytesCount += 3 + object.postDate.length * 3;
+  bytesCount += 3 + object.postedBy.length * 3;
   bytesCount += 3 + object.title.length * 3;
   return bytesCount;
 }
@@ -94,7 +105,8 @@ void _jobModelSerialize(
   writer.writeString(offsets[3], object.jobNumber);
   writer.writeString(offsets[4], object.location);
   writer.writeString(offsets[5], object.postDate);
-  writer.writeString(offsets[6], object.title);
+  writer.writeString(offsets[6], object.postedBy);
+  writer.writeString(offsets[7], object.title);
 }
 
 JobModel _jobModelDeserialize(
@@ -105,12 +117,13 @@ JobModel _jobModelDeserialize(
 ) {
   final object = JobModel(
     category: reader.readString(offsets[0]),
-    id: reader.readString(offsets[1]),
+    id: reader.readStringOrNull(offsets[1]),
     isUrgent: reader.readLong(offsets[2]),
     jobNumber: reader.readString(offsets[3]),
     location: reader.readString(offsets[4]),
     postDate: reader.readString(offsets[5]),
-    title: reader.readString(offsets[6]),
+    postedBy: reader.readString(offsets[6]),
+    title: reader.readString(offsets[7]),
   );
   object.isarId = id;
   return object;
@@ -126,7 +139,7 @@ P _jobModelDeserializeProp<P>(
     case 0:
       return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 2:
       return (reader.readLong(offset)) as P;
     case 3:
@@ -136,6 +149,8 @@ P _jobModelDeserializeProp<P>(
     case 5:
       return (reader.readString(offset)) as P;
     case 6:
+      return (reader.readString(offset)) as P;
+    case 7:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -363,8 +378,24 @@ extension JobModelQueryFilter
     });
   }
 
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> idIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'id',
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> idIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'id',
+      ));
+    });
+  }
+
   QueryBuilder<JobModel, JobModel, QAfterFilterCondition> idEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -377,7 +408,7 @@ extension JobModelQueryFilter
   }
 
   QueryBuilder<JobModel, JobModel, QAfterFilterCondition> idGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -392,7 +423,7 @@ extension JobModelQueryFilter
   }
 
   QueryBuilder<JobModel, JobModel, QAfterFilterCondition> idLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -407,8 +438,8 @@ extension JobModelQueryFilter
   }
 
   QueryBuilder<JobModel, JobModel, QAfterFilterCondition> idBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -990,6 +1021,136 @@ extension JobModelQueryFilter
     });
   }
 
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> postedByEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'postedBy',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> postedByGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'postedBy',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> postedByLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'postedBy',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> postedByBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'postedBy',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> postedByStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'postedBy',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> postedByEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'postedBy',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> postedByContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'postedBy',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> postedByMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'postedBy',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> postedByIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'postedBy',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterFilterCondition> postedByIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'postedBy',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<JobModel, JobModel, QAfterFilterCondition> titleEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1200,6 +1361,18 @@ extension JobModelQuerySortBy on QueryBuilder<JobModel, JobModel, QSortBy> {
     });
   }
 
+  QueryBuilder<JobModel, JobModel, QAfterSortBy> sortByPostedBy() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'postedBy', Sort.asc);
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterSortBy> sortByPostedByDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'postedBy', Sort.desc);
+    });
+  }
+
   QueryBuilder<JobModel, JobModel, QAfterSortBy> sortByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
@@ -1299,6 +1472,18 @@ extension JobModelQuerySortThenBy
     });
   }
 
+  QueryBuilder<JobModel, JobModel, QAfterSortBy> thenByPostedBy() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'postedBy', Sort.asc);
+    });
+  }
+
+  QueryBuilder<JobModel, JobModel, QAfterSortBy> thenByPostedByDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'postedBy', Sort.desc);
+    });
+  }
+
   QueryBuilder<JobModel, JobModel, QAfterSortBy> thenByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
@@ -1355,6 +1540,13 @@ extension JobModelQueryWhereDistinct
     });
   }
 
+  QueryBuilder<JobModel, JobModel, QDistinct> distinctByPostedBy(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'postedBy', caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<JobModel, JobModel, QDistinct> distinctByTitle(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1377,7 +1569,7 @@ extension JobModelQueryProperty
     });
   }
 
-  QueryBuilder<JobModel, String, QQueryOperations> idProperty() {
+  QueryBuilder<JobModel, String?, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
@@ -1407,6 +1599,12 @@ extension JobModelQueryProperty
     });
   }
 
+  QueryBuilder<JobModel, String, QQueryOperations> postedByProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'postedBy');
+    });
+  }
+
   QueryBuilder<JobModel, String, QQueryOperations> titleProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'title');
@@ -1419,14 +1617,15 @@ extension JobModelQueryProperty
 // **************************************************************************
 
 JobModel _$JobModelFromJson(Map<String, dynamic> json) => JobModel(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      location: json['address'] as String,
-      category: json['primaryJobType'] as String,
-      jobNumber: json['jobNumber'] as String,
-      isUrgent: (json['urgencyTypeId'] as num).toInt(),
-      postDate: json['postedDateTime'] as String,
-    )..isarId = (json['isarId'] as num).toInt();
+      id: json['id'] as String?,
+      title: json['title'] as String? ?? '',
+      location: json['address'] as String? ?? '',
+      category: json['primaryJobType'] as String? ?? '',
+      jobNumber: json['jobNumber'] as String? ?? '',
+      isUrgent: (json['urgencyTypeId'] as num?)?.toInt() ?? 0,
+      postDate: json['postedDateTime'] as String? ?? '',
+      postedBy: json['postedBy'] as String? ?? '',
+    );
 
 Map<String, dynamic> _$JobModelToJson(JobModel instance) => <String, dynamic>{
       'isarId': instance.isarId,
@@ -1437,4 +1636,5 @@ Map<String, dynamic> _$JobModelToJson(JobModel instance) => <String, dynamic>{
       'jobNumber': instance.jobNumber,
       'urgencyTypeId': instance.isUrgent,
       'postedDateTime': instance.postDate,
+      'postedBy': instance.postedBy,
     };

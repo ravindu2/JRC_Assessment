@@ -108,8 +108,8 @@ class JobCard extends StatelessWidget {
         color: AppColors.textColor,
         borderRadius: BorderRadius.circular(Dimensions.borderRadiusSmall),
       ),
-      child: const Text(
-        'Tenant posted',
+      child: Text(
+        job.postedBy,
         style: TextStyle(
           color: AppColors.statusBackgroundColor,
           fontSize: Dimensions.fontSmallJob,
@@ -153,8 +153,8 @@ class JobCard extends StatelessWidget {
         'Urgently',
         style: TextStyle(
           color: AppColors.urgentTextColour,
-          fontSize: 10.0,
-          fontFamily: 'AvenirNext-DemiBold',
+          fontSize: Dimensions.fontSmallJob,
+          fontFamily: 'AvenirNext',
           fontWeight: FontWeight.w600,
         ),
         textAlign: TextAlign.center,

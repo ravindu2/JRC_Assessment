@@ -21,6 +21,7 @@ class Dimensions {
   static const double iconSize = 32.0;
   static const double iconBoarderRadius = 26.0;
   static const double iconsizesmall = 20.0;
+  static const double iconsizemedium = 24;
 }
 
 class AppColors {

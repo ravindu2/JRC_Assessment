@@ -1,19 +1,19 @@
 {
   "loginText": "Login to your account",
   "login": "LOGIN",
-  "forgotPassword":"Forgot password?",
-  "jobs":"Jobs",
-  "inspections":"Inspections",
-  "chat":"Chat",
-  "notifications":"Notifications",
-  "more":"More",
-  "en_email":"Enter Email",
-  "en_password":"Enter Password",
-  "error":"Error",
-  "error_massage_email":"Please enter email and password",
-  "suceess_msg":"Logged in successfully.",
-  "failed_msg":"Login failed: User ID is null.",
-  "unvalid_email_msg":"Enter the valid Email",
+  "forgotPassword": "Forgot password?",
+  "jobs": "Jobs",
+  "inspections": "Inspections",
+  "chat": "Chat",
+  "notifications": "Notifications",
+  "more": "More",
+  "en_email": "Enter Email",
+  "en_password": "Enter Password",
+  "error": "Error",
+  "error_massage_email": "Please enter email and password",
+  "suceess_msg": "Logged in successfully.",
+  "failed_msg": "Login failed: User ID is null.",
+  "unvalid_email_msg": "Enter the valid Email",
   "loginFailed": "Login failed: {error}",
   "@loginFailed": {
     "description": "Error message when login fails",
@@ -21,6 +21,12 @@
       "error": {}
     }
   },
-  "success":"Success"
-
+  "success": "Success",
+  "jobs_fails": "Failed to load jobs: {error}",
+  "@jobs_fails": {
+    "description": "Error message when job fetch",
+    "placeholders": {
+      "error": {}
+    }
+  }
 }

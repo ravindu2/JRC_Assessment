@@ -81,7 +81,7 @@ class JobsScreen extends StatelessWidget {
             child: const Center(
               child: Icon(
                 Icons.search,
-                color: Colors.black,
+                color: AppColors.textColor,
                 size: 19,
               ),
             ),
