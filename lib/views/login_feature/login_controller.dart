@@ -24,17 +24,17 @@ class LoginController extends GetxController {
     if (email.isEmpty || password.isEmpty || !emailRegex.hasMatch(email)) {
       if (email.isEmpty) {
         Get.snackbar(
-          'Error',
+          AppLocalizations.of(Get.overlayContext!)!.error,
           AppLocalizations.of(Get.overlayContext!)!.error_massage_email,
         );
       } else if (password.isEmpty) {
         Get.snackbar(
-          'Error',
+          AppLocalizations.of(Get.overlayContext!)!.error,
           AppLocalizations.of(Get.overlayContext!)!.error_massage_email,
         );
       } else if (!emailRegex.hasMatch(email)) {
         Get.snackbar(
-          'Error',
+          AppLocalizations.of(Get.overlayContext!)!.error,
           AppLocalizations.of(Get.overlayContext!)!.unvalid_email_msg,
         );
       }

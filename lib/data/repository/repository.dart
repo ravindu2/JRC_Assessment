@@ -23,7 +23,7 @@ class Repository implements RepositoryInterface {
       }
       final jobs = await remoteDataSource.getJobList(userId);
       await localDataSource.saveJobs(jobs.take(6).toList());
-      return await localDataSource.getJobs();
+      return jobs;
     } catch (e) {
       throw Exception('Failed to fetch initial jobs: $e');
     }

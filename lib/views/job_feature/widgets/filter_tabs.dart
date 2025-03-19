@@ -40,6 +40,7 @@ class FilterTabs extends StatelessWidget {
                   filter,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontSize: Dimensions.fontSmall,
                     color: isSelected ? Colors.white : Colors.black,
                     fontWeight:
                         isSelected ? FontWeight.bold : FontWeight.normal,

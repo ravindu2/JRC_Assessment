@@ -5,7 +5,6 @@ class Dimensions {
   static const double spaceLarge = 32.0;
   static const double spaceMedium = 24.0;
   static const double spaceSmall = 16.0;
-
   static const double paddingSmall = 7.6;
 
   static const double paddingMedium = 16.0;

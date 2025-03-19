@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jrc_assement/themes/themes.dart';
 
 class JobCount extends StatelessWidget {
   final int count;
@@ -13,25 +14,28 @@ class JobCount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(
+          horizontal: Dimensions.spaceSmall,
+          vertical: Dimensions.borderRadiusSmall),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             'Showing $count jobs',
-            style:
-                TextStyle(color: Colors.grey[600], fontStyle: FontStyle.italic),
+            style: TextStyle(
+                color: AppColors.disabledButtonColor,
+                fontStyle: FontStyle.italic),
           ),
           GestureDetector(
             onTap: onFilterTap,
             child: Row(
               children: [
                 Icon(Icons.flash_on_outlined,
-                    color: Colors.blue[300], size: 20),
+                    color: AppColors.primaryColor, size: 20),
                 const SizedBox(width: 4),
                 Text(
                   'Filter',
-                  style: TextStyle(color: Colors.blue[300]),
+                  style: TextStyle(color: AppColors.primaryColor),
                 ),
               ],
             ),

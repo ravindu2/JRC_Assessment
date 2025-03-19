@@ -22,7 +22,6 @@ class JobCard extends StatelessWidget {
         vertical: Dimensions.marginSmall,
       ),
       color: Colors.white,
-      elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Dimensions.borderRadiusMedium),
       ),
