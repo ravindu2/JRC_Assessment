@@ -19,7 +19,7 @@ class FilterTabs extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: Dimensions.spaceSmall),
       decoration: BoxDecoration(
         color: AppColors.backgroundColor,
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(Dimensions.iconBoarderRadius),
       ),
       child: Row(
         children: filters.map((filter) {
@@ -29,11 +29,12 @@ class FilterTabs extends StatelessWidget {
               onTap: () => onFilterChanged(filter),
               child: Container(
                 padding: const EdgeInsets.symmetric(
-                    vertical: Dimensions.paddingMedium),
+                    vertical: Dimensions.paddingSmall),
                 decoration: BoxDecoration(
                   color:
                       isSelected ? AppColors.primaryColor : Colors.transparent,
-                  borderRadius: BorderRadius.circular(25),
+                  borderRadius:
+                      BorderRadius.circular(Dimensions.iconBoarderRadius),
                 ),
                 child: Text(
                   filter,
@@ -41,7 +42,9 @@ class FilterTabs extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'AvenirNext',
                     fontSize: Dimensions.fontSmall,
-                    color: isSelected ? Colors.white : Colors.black,
+                    color: isSelected
+                        ? AppColors.buttonTextColor
+                        : AppColors.textColor,
                     fontWeight:
                         isSelected ? FontWeight.bold : FontWeight.normal,
                   ),

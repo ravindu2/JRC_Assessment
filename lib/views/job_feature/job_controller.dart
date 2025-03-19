@@ -33,8 +33,7 @@ class JobsController extends GetxController {
     try {
       fetchJobs();
     } catch (e) {
-      Get.snackbar(AppLocalizations.of(Get.overlayContext!)!.error,
-          'Failed to refresh jobs');
+      Get.snackbar(AppLocalizations.of(Get.overlayContext!)!.error, '$e');
     }
   }
 

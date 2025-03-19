@@ -78,12 +78,12 @@ class JobsScreen extends StatelessWidget {
               color: AppColors.iconContainerColor,
               borderRadius: BorderRadius.circular(Dimensions.iconBoarderRadius),
             ),
-            child: const Center(
-              child: Icon(
-                Icons.search,
-                color: AppColors.textColor,
-                size: 19,
-              ),
+            child: SvgPicture.asset(
+              'assets/image/search_icon.svg',
+              width: Dimensions.iconsizemedium,
+              height: Dimensions.iconsizemedium,
+              colorFilter:
+                  const ColorFilter.mode(AppColors.textColor, BlendMode.srcIn),
             ),
           ),
           onPressed: () {},
@@ -99,8 +99,8 @@ class JobsScreen extends StatelessWidget {
             ),
             child: SvgPicture.asset(
               'assets/image/icon_people.svg',
-              width: 23,
-              height: 23,
+              width: Dimensions.iconsizemedium,
+              height: Dimensions.iconsizemedium,
               colorFilter:
                   const ColorFilter.mode(AppColors.textColor, BlendMode.srcIn),
             ),

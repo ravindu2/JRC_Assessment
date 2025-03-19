@@ -8,11 +8,12 @@ class Dimensions {
   static const double paddingSmall = 7.6;
   static const double paddingmedium = 12;
 
+  static const double paddingsmall = 12.0;
   static const double paddingMedium = 16.0;
   static const double paddingLarge = 15.0;
   static const double gapsbetweentitle = 7.0;
   static const double marginSmall = 14.0;
-  static const double marginMedium = 15.0;
+  static const double marginMedium = 10.0;
   static const double fontSmall = 12.0;
   static const double fontSmallJob = 10.0;
   static const double fontLarge = 14.0;
@@ -21,7 +22,7 @@ class Dimensions {
   static const double iconSize = 32.0;
   static const double iconBoarderRadius = 26.0;
   static const double iconsizesmall = 20.0;
-  static const double iconsizemedium = 24;
+  static const double iconsizemedium = 24.0;
 }
 
 class AppColors {
@@ -31,6 +32,7 @@ class AppColors {
   static const Color textColor = Colors.black;
   static const Color buttonTextColor = Colors.white;
   static const Color disabledButtonColor = Colors.grey;
+  static const Color jobCategoryColor = Color(0xFFEFF3F6);
 
   static const Color jobIdColor = Color(0xFFc0e8d6);
   static const Color statusBackgroundColor = Color(0xFFEEEEEE);

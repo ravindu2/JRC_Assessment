@@ -21,7 +21,7 @@ class JobCard extends StatelessWidget {
         horizontal: Dimensions.marginMedium,
         vertical: Dimensions.marginSmall,
       ),
-      color: Colors.white,
+      color: AppColors.backgroundColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Dimensions.borderRadiusMedium),
       ),
@@ -46,8 +46,9 @@ class JobCard extends StatelessWidget {
     return Text(
       job.title,
       style: const TextStyle(
+        fontFamily: 'AvenirNext',
         fontSize: Dimensions.fontLarge,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w700,
         color: AppColors.titleTextColor,
       ),
     );
@@ -120,19 +121,19 @@ class JobCard extends StatelessWidget {
 
   Widget _buildCategoryTag() {
     return Container(
-      padding: const EdgeInsets.symmetric(
+      padding: EdgeInsets.symmetric(
         horizontal: Dimensions.paddingSmall,
         vertical: Dimensions.paddingSmall / 2,
       ),
       decoration: BoxDecoration(
-        color: Colors.grey.shade200,
+        color: AppColors.jobCategoryColor,
         borderRadius: BorderRadius.circular(Dimensions.borderRadiusSmall),
       ),
       child: Text(
         job.category,
         style: const TextStyle(
           fontSize: Dimensions.fontSmallJob,
-          color: Colors.black54,
+          color: AppColors.textColor,
         ),
         overflow: TextOverflow.ellipsis,
       ),
