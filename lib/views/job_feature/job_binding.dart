@@ -1,13 +1,10 @@
 import 'package:get/get.dart';
-import 'package:jrc_assement/data/repository/repository_interface.dart';
 
 import 'job_controller.dart';
 
 class JobBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<JobsController>(() => JobsController(
-          repository: Get.find<RepositoryInterface>(),
-        ));
+    Get.lazyPut<JobsController>(() => JobsController());
   }
 }

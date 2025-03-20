@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jrc_assement/themes/themes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class JobCount extends StatelessWidget {
   final int count;
@@ -37,7 +38,7 @@ class JobCount extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  'Filter',
+                  AppLocalizations.of(context)!.filter,
                   style: TextStyle(color: AppColors.primaryColor),
                 ),
               ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jrc_assement/data/repository/repository_interface.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jrc_assement/themes/argument_const.dart';
 
 class LoginController extends GetxController {
   final emailController = TextEditingController();
@@ -10,34 +11,30 @@ class LoginController extends GetxController {
   var isLoading = false.obs;
   final userId = ''.obs;
   final obscureText = true.obs;
-  final RepositoryInterface repository;
+  final RepositoryInterface repository = Get.find<RepositoryInterface>();
 
   final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-
-  LoginController({required this.repository});
 
   void togglePasswordVisibility() {
     obscureText.value = !obscureText.value;
   }
 
   Future<void> login(String email, String password) async {
-    if (email.isEmpty || password.isEmpty || !emailRegex.hasMatch(email)) {
-      if (email.isEmpty) {
-        Get.snackbar(
-          AppLocalizations.of(Get.overlayContext!)!.error,
-          AppLocalizations.of(Get.overlayContext!)!.error_massage_email,
-        );
-      } else if (password.isEmpty) {
-        Get.snackbar(
-          AppLocalizations.of(Get.overlayContext!)!.error,
-          AppLocalizations.of(Get.overlayContext!)!.error_massage_email,
-        );
-      } else if (!emailRegex.hasMatch(email)) {
-        Get.snackbar(
-          AppLocalizations.of(Get.overlayContext!)!.error,
-          AppLocalizations.of(Get.overlayContext!)!.unvalid_email_msg,
-        );
-      }
+    if (email.isEmpty) {
+      Get.snackbar(
+        AppLocalizations.of(Get.overlayContext!)!.error,
+        AppLocalizations.of(Get.overlayContext!)!.error_massage_email,
+      );
+    } else if (password.isEmpty) {
+      Get.snackbar(
+        AppLocalizations.of(Get.overlayContext!)!.error,
+        AppLocalizations.of(Get.overlayContext!)!.error_massage_email,
+      );
+    } else if (!emailRegex.hasMatch(email)) {
+      Get.snackbar(
+        AppLocalizations.of(Get.overlayContext!)!.error,
+        AppLocalizations.of(Get.overlayContext!)!.unvalid_email_msg,
+      );
     }
 
     try {
@@ -48,7 +45,8 @@ class LoginController extends GetxController {
           AppLocalizations.of(Get.overlayContext!)!.success,
           AppLocalizations.of(Get.overlayContext!)!.suceess_msg,
         );
-        Get.offAllNamed('/jobs', arguments: {'userId': user.userId});
+        Get.offAllNamed('/jobs',
+            arguments: {ArgumentConst.userId: user.userId});
       } else {
         Get.snackbar(AppLocalizations.of(Get.overlayContext!)!.error,
             AppLocalizations.of(Get.overlayContext!)!.unvalid_email_msg);

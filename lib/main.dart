@@ -11,6 +11,7 @@ import 'package:jrc_assement/data/repository/repository.dart';
 import 'package:jrc_assement/data/repository/repository_interface.dart';
 import 'package:jrc_assement/data/services/api_service.dart';
 import 'package:jrc_assement/data/services/api_constants.dart';
+import 'package:jrc_assement/themes/argument_const.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
 
     if (await repository.isLoggedIn()) {
       final user = await repository.localusers();
-      Get.offAllNamed('/jobs', arguments: {'userId': user?.userId});
+      Get.offAllNamed('/jobs', arguments: {ArgumentConst.userId: user?.userId});
     }
   }
 

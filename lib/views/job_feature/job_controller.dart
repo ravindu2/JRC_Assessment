@@ -2,14 +2,15 @@ import 'package:get/get.dart';
 import 'package:jrc_assement/data/repository/repository_interface.dart';
 import 'package:jrc_assement/data/models/job_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jrc_assement/themes/argument_const.dart';
 
 class JobsController extends GetxController {
-  final RepositoryInterface repository;
+  final RepositoryInterface repository = Get.find<RepositoryInterface>();
   final selectedFilter = "ACTION".obs;
   final List<String> filters = ["ACTION", "FOLLOW UP", "REVIEW"];
   var jobs = <JobModel>[].obs;
 
-  JobsController({required this.repository});
+  JobsController();
 
   @override
   void onInit() {
@@ -18,7 +19,7 @@ class JobsController extends GetxController {
   }
 
   void fetchJobs() async {
-    final String userId = Get.arguments['userId'];
+    final String userId = Get.arguments[ArgumentConst.userId];
 
     try {
       final jobList = await repository.getJobs(userId);
