@@ -13,8 +13,6 @@ class LoginController extends GetxController {
   final obscureText = true.obs;
   final RepositoryInterface repository = Get.find<RepositoryInterface>();
 
-  final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-
   void togglePasswordVisibility() {
     obscureText.value = !obscureText.value;
   }
@@ -22,15 +20,15 @@ class LoginController extends GetxController {
   Future<void> login(String email, String password) async {
     if (email.isEmpty) {
       Get.snackbar(
-        AppLocalizations.of(Get.overlayContext!)!.error,
-        AppLocalizations.of(Get.overlayContext!)!.error_massage_email,
+        AppLocalizations.of(Get.context!)!.error,
+        AppLocalizations.of(Get.context!)!.error_massage_email,
       );
     } else if (password.isEmpty) {
       Get.snackbar(
         AppLocalizations.of(Get.overlayContext!)!.error,
         AppLocalizations.of(Get.overlayContext!)!.error_massage_email,
       );
-    } else if (!emailRegex.hasMatch(email)) {
+    } else if (!GetUtils.isEmail(email)) {
       Get.snackbar(
         AppLocalizations.of(Get.overlayContext!)!.error,
         AppLocalizations.of(Get.overlayContext!)!.unvalid_email_msg,

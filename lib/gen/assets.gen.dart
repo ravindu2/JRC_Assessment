@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  // ignore: library_private_types_in_public_api
   static const _Image image = _Image();
 }
 

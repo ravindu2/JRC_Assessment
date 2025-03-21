@@ -12,7 +12,7 @@ class Dimensions {
   static const double paddingMedium = 16.0;
   static const double paddingLarge = 15.0;
   static const double gapsbetweentitle = 7.0;
-  static const double marginSmall = 14.0;
+  static const double marginSmall = 8.0;
   static const double marginMedium = 10.0;
   static const double fontSmall = 12.0;
   static const double fontSmallJob = 10.0;

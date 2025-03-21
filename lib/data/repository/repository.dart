@@ -1,7 +1,6 @@
 import 'package:jrc_assement/data/local_data_source/local_data_source_interface.dart';
 import 'package:jrc_assement/data/models/login_model.dart';
 import 'package:jrc_assement/data/remote_data_source/remote_data_source_interface.dart';
-
 import 'package:jrc_assement/data/models/job_model.dart';
 import 'package:jrc_assement/data/repository/repository_interface.dart';
 
