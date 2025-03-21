@@ -167,7 +167,7 @@ class JobCard extends StatelessWidget {
     return Text(
       'Posted on ${_formatDate(job.postDate)}',
       style: TextStyle(
-        color: AppColors.postDateTextColor,
+        color: AppColors.disabledButtonColor,
         fontSize: Dimensions.fontSmall,
         fontStyle: FontStyle.italic,
       ),
