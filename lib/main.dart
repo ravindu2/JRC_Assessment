@@ -35,27 +35,23 @@ void main() async {
     permanent: true,
   );
 
-  runApp(const MyApp());
+  final repository = Get.find<RepositoryInterface>();
+  bool isLoggedIn = await repository.isLoggedIn();
+  String initialRoute = isLoggedIn ? AppRoutes.jobs : AppRoutes.login;
+
+  runApp(MyApp(initialRoute: initialRoute));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoute;
 
-  Future<void> checkLoginStatus() async {
-    final repository = Get.find<RepositoryInterface>();
-
-    if (await repository.isLoggedIn()) {
-      final user = await repository.localusers();
-      Get.offAllNamed('/jobs', arguments: {ArgumentConst.userId: user?.userId});
-    }
-  }
+  const MyApp({
+    super.key,
+    required this.initialRoute,
+  });
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      checkLoginStatus();
-    });
-
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'JRC Assessment',
@@ -68,7 +64,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         Locale('en', ''),
       ],
-      initialRoute: AppRoutes.login,
+      initialRoute: initialRoute,
       getPages: AppPages.pages,
     );
   }

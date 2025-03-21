@@ -18,7 +18,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.secondryColor,
       body: SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,

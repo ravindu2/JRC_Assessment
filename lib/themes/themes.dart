@@ -27,17 +27,16 @@ class Dimensions {
 
 class AppColors {
   static const Color primaryColor = Color.fromRGBO(20, 129, 222, 1.0);
-  static const Color backgroundColor = Colors.white;
+  static const Color secondryColor = Colors.white;
   static const Color jobBackgroundColor = Color(0xFFF2F2F2);
   static const Color textColor = Colors.black;
-  static const Color buttonTextColor = Colors.white;
-  static const Color disabledButtonColor = Colors.grey;
+
+  static const Color disabledButtonColor = Color.fromRGBO(0, 0, 0, 0.5);
   static const Color jobCategoryColor = Color(0xFFEFF3F6);
 
-  static const Color jobIdColor = Color(0xFFc0e8d6);
+  static const Color jobIdBackgroundColor = Color(0xFFc0e8d6);
   static const Color statusBackgroundColor = Color(0xFFEEEEEE);
   static const Color urgentBackgroundColor = Color(0xFFFFE4E1);
-  static const Color titleTextColor = Colors.black;
   static const Color locationTextColor = Color(0xCC000000);
   static const Color postDateTextColor = Color(0xFF9E9E9E);
   static const Color iconContainerColor = Color.fromRGBO(230, 230, 230, 1);
@@ -54,7 +53,7 @@ class AppThemes {
   static const TextStyle buttonTextStyle = TextStyle(
     fontSize: 16,
     letterSpacing: 1,
-    color: AppColors.buttonTextColor,
+    color: AppColors.secondryColor,
   );
 
   static const TextStyle forgotPasswordTextStyle = TextStyle(

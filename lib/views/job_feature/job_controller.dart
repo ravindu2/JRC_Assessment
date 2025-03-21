@@ -19,14 +19,21 @@ class JobsController extends GetxController {
   }
 
   void fetchJobs() async {
-    final String userId = Get.arguments[ArgumentConst.userId];
+    String? userId = Get.arguments?[ArgumentConst.userId];
+
+    if (userId == null) {
+      final user = await repository.localusers();
+      userId = user?.userId;
+    }
 
     try {
-      final jobList = await repository.getJobs(userId);
+      final jobList = await repository.getJobs(userId!);
       jobs.assignAll(jobList);
     } catch (e) {
-      Get.snackbar(AppLocalizations.of(Get.overlayContext!)!.error,
-          AppLocalizations.of(Get.overlayContext!)!.jobs_fails(e));
+      Get.snackbar(
+        AppLocalizations.of(Get.overlayContext!)!.error,
+        AppLocalizations.of(Get.overlayContext!)!.jobs_fails(e),
+      );
     }
   }
 

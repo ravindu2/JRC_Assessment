@@ -18,7 +18,7 @@ class FilterTabs extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: Dimensions.spaceSmall),
       decoration: BoxDecoration(
-        color: AppColors.backgroundColor,
+        color: AppColors.secondryColor,
         borderRadius: BorderRadius.circular(Dimensions.iconBoarderRadius),
       ),
       child: Row(
@@ -43,7 +43,7 @@ class FilterTabs extends StatelessWidget {
                     fontFamily: 'AvenirNext',
                     fontSize: Dimensions.fontSmall,
                     color: isSelected
-                        ? AppColors.buttonTextColor
+                        ? AppColors.secondryColor
                         : AppColors.textColor,
                     fontWeight:
                         isSelected ? FontWeight.bold : FontWeight.normal,
