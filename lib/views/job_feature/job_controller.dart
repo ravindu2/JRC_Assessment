@@ -10,8 +10,6 @@ class JobsController extends GetxController {
   final List<String> filters = ["ACTION", "FOLLOW UP", "REVIEW"];
   var jobs = <JobModel>[].obs;
 
-  JobsController();
-
   @override
   void onInit() {
     super.onInit();

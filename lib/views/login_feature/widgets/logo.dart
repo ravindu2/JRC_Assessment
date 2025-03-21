@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jrc_assement/gen/assets.gen.dart';
+import 'package:jrc_assement/themes/themes.dart';
 
 class LoginLogo extends StatelessWidget {
   const LoginLogo({super.key});
@@ -10,8 +11,8 @@ class LoginLogo extends StatelessWidget {
     return Center(
       child: SvgPicture.asset(
         Assets.image.logo,
-        height: 36,
-        width: 202,
+        height: Dimensions.logoHsize,
+        width: Dimensions.logoWsize,
       ),
     );
   }

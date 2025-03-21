@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jrc_assement/gen/assets.gen.dart';
 import 'package:jrc_assement/themes/themes.dart';
 import 'package:jrc_assement/views/job_feature/job_controller.dart';
 import 'package:jrc_assement/views/job_feature/widgets/job_card.dart';
@@ -79,11 +80,9 @@ class JobsScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(Dimensions.iconBoarderRadius),
             ),
             child: SvgPicture.asset(
-              'assets/image/search_icon.svg',
+              Assets.image.searchIcon,
               width: Dimensions.iconsizemedium,
               height: Dimensions.iconsizemedium,
-              colorFilter:
-                  const ColorFilter.mode(AppColors.textColor, BlendMode.srcIn),
             ),
           ),
           onPressed: () {},
@@ -98,11 +97,9 @@ class JobsScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(Dimensions.iconBoarderRadius),
             ),
             child: SvgPicture.asset(
-              'assets/image/icon_people.svg',
+              Assets.image.iconPeople,
               width: Dimensions.iconsizemedium,
               height: Dimensions.iconsizemedium,
-              colorFilter:
-                  const ColorFilter.mode(AppColors.textColor, BlendMode.srcIn),
             ),
           ),
           onPressed: () {},

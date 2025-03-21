@@ -23,6 +23,9 @@ class Dimensions {
   static const double iconBoarderRadius = 26.0;
   static const double iconsizesmall = 20.0;
   static const double iconsizemedium = 24.0;
+
+  static const double logoHsize = 36.0;
+  static const double logoWsize = 202.0;
 }
 
 class AppColors {
